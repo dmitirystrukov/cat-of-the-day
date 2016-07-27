@@ -25,7 +25,6 @@ gem 'jquery-ui-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
 
-
 group :development do
   gem 'bullet'
   gem 'byebug'
