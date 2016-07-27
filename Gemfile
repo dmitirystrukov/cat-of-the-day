@@ -16,6 +16,8 @@ gem 'simple_form'
 gem 'friendly_id'
 gem 'carrierwave'
 
+gem 'jquery-rails'
+
 group :development do
   gem 'bullet'
   gem 'byebug'
