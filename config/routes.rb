@@ -1,3 +1,8 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  namespace :users do
+    resource :profile, only: [:edit, :update], controller: :profile
+    resources :day_subjects do
+      resource :statistics, except: [:index]
+    end    
+  end
 end
