@@ -17,8 +17,13 @@
 !/log/.keep
 !/tmp/.keep
 
+<<<<<<< HEAD
 .rspec.tpl
 config/database.tpl.yml
+=======
+.rspec
+config/database.yml
+>>>>>>> afa9e58dc86aa0f6c2c7cf65e7eebfc9c9d761d6
 
 # Ignore Byebug command history file.
 .byebug_history

@@ -25,8 +25,6 @@ end
 
 group :test do
   gem 'database_cleaner'
-  gem 'rspec', '3.4.0'
-  gem 'rspec-rails', '~> 3.4'
   gem 'shoulda-matchers', '3.1.1'
   gem 'capybara', '~> 2.5'
   gem 'capybara-screenshot'
@@ -38,6 +36,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
   gem 'rails_dt'
   gem 'pry-rails'
   gem 'factory_girl_rails'
