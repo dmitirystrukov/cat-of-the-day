@@ -17,8 +17,8 @@
 !/log/.keep
 !/tmp/.keep
 
-.rspec.tpl
-config/database.tpl.yml
+.rspec
+config/database.yml
 
 # Ignore Byebug command history file.
 .byebug_history
