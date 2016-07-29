@@ -1,0 +1,6 @@
+= link_to 'Create new day theme', new_day_theme_path
+- @day_themes.each do |day_theme|
+  %h1
+    = link_to day_theme.title, day_theme_path(day_theme)
+  %p
+    = day_theme.description

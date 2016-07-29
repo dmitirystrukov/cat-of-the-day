@@ -15,8 +15,11 @@ gem 'pg'
 gem 'simple_form'
 gem 'friendly_id'
 gem 'carrierwave'
+gem 'mini_magick'
+gem 'haml'
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 
 group :development do
   gem 'bullet'
