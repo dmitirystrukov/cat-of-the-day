@@ -1,0 +1,9 @@
+%section.tiles
+  - @day_subjects.each do |day_subject|
+    %article.style2
+      %span.image
+        = image_tag 'pic07.jpg'
+      %a{:href => '#'}
+        %h2= day_subject.title
+        .content
+          %p= day_subject.description

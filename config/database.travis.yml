@@ -1,0 +1,17 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: catday_development
+  host: localhost
+  pool: 5
+  username: postgres
+  password: 
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: catday_test
+  host: localhost
+  pool: 5
+  username: postgres
+  password: 

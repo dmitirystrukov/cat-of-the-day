@@ -11,10 +11,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727065620) do
+ActiveRecord::Schema.define(version: 20160730103458) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "day_subjects", force: :cascade do |t|
+    t.integer  "user_id",     null: false
+    t.string   "title",       null: false
+    t.string   "description", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.integer  "object_id",   null: false
+    t.string   "object_type", null: false
+    t.string   "url",         null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "profiles", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.string   "first_name", null: false
+    t.string   "last_name",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "social_profiles", force: :cascade do |t|
+    t.integer  "user_id",      null: false
+    t.string   "uid"
+    t.string   "service_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "social_profiles", ["user_id", "service_name"], name: "index_social_profiles_on_user_id_and_service_name", unique: true, using: :btree
+  add_index "social_profiles", ["user_id"], name: "index_social_profiles_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

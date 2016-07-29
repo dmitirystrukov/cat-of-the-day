@@ -15,8 +15,16 @@ gem 'pg'
 gem 'simple_form'
 gem 'friendly_id'
 gem 'carrierwave'
+gem 'mini_magick'
+gem 'sass'
+gem 'haml'
 
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 
 group :development do
   gem 'bullet'
@@ -43,4 +51,5 @@ group :development, :test do
   gem 'pry-rails'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
 end

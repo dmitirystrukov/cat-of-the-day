@@ -13,3 +13,5 @@ module Catday
     # -- all .rb files in that directory are automatically loaded.
   end
 end
+
+require Rails.root.join 'lib', 'modules', 'omniauthable'
