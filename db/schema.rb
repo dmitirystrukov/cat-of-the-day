@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160729064008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "day_themes", force: :cascade do |t|
+  create_table "day_subjects", force: :cascade do |t|
     t.integer  "user_id",     null: false
     t.string   "title",       null: false
     t.string   "description", null: false
