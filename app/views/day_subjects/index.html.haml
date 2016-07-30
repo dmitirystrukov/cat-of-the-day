@@ -1,0 +1,6 @@
+= link_to 'Create new day subject', new_day_subject_path
+- @day_subjects.each do |day_subject|
+  %h1
+    = link_to day_subject.title, day_subject_path(day_subject)
+  %p
+    = day_subject.description
