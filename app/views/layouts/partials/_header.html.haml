@@ -1,0 +1,12 @@
+%header
+  %h3 The ketties of the Day
+  - if user_signed_in?
+    %span= "Hello, #{current_user.full_name}"
+  %nav
+    %ul
+      - if user_signed_in?
+        %li
+          = link_to 'Sign Out', destroy_user_session_path, method: :delete
+      - else
+        %li
+          = link_to 'Login Facebook', user_facebook_omniauth_authorize_path
