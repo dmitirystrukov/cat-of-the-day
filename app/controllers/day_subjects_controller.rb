@@ -35,6 +35,8 @@ class DaySubjectsController < ActionController::Base
     end
   end
 
+  private
+
   def day_subject_params
     params.require(:day_subject).permit(:user_id, :title, :description)
   end
