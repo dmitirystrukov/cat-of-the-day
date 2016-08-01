@@ -224,6 +224,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.8.1)
+    sass (3.4.22)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     simple_form (3.2.1)
@@ -287,6 +288,7 @@ DEPENDENCIES
   rolify
   rspec-rails (~> 3.5)
   rubocop
+  sass
   shoulda-matchers (= 3.1.1)
   simple_form
   simplecov
