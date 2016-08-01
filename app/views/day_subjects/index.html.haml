@@ -1,6 +1,9 @@
-= link_to 'Create new day subject', new_day_subject_path
-- @day_subjects.each do |day_subject|
-  %h1
-    = link_to day_subject.title, day_subject_path(day_subject)
-  %p
-    = day_subject.description
+%section.tiles
+  - @day_subjects.each do |day_subject|
+    %article.style2
+      %span.image
+        = image_tag 'pic07.jpg'
+      %a{:href => '#'}
+        %h2= day_subject.title
+        .content
+          %p= day_subject.description
