@@ -22,6 +22,9 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+gem 'omniauth'
+gem 'omniauth-facebook'
+
 group :development do
   gem 'bullet'
   gem 'byebug'
@@ -47,4 +50,5 @@ group :development, :test do
   gem 'pry-rails'
   gem 'factory_girl_rails'
   gem 'faker'
+  gem 'dotenv-rails', require: 'dotenv/rails-now'
 end
