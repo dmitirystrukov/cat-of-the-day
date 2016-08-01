@@ -16,6 +16,7 @@ gem 'simple_form'
 gem 'friendly_id'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'sass'
 gem 'haml'
 
 gem 'jquery-rails'

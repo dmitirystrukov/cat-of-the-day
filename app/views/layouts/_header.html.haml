@@ -1,0 +1,18 @@
+%header#header
+  .inner
+    / Logo
+    %a.logo{:href => "index.html"}
+      %span.symbol
+        = image_tag 'logo.png'
+      %span.title Cat of the Day
+    / Nav
+    %nav
+      %ul
+        %li
+          %a{:href => "#menu"} Menu
+/ Menu
+%nav#menu
+  %h2 Menu
+  %ul
+    %li
+      %a{:href => "index.html"} Home

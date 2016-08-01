@@ -1,4 +1,4 @@
-class DaySubjectsController < ActionController::Base
+class DaySubjectsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def index
