@@ -3,7 +3,5 @@
     %article.style2
       %span.image
         = image_tag 'pic07.jpg'
-      %a{:href => '#'}
+      = link_to day_subject_path(day_subject) do
         %h2= day_subject.title
-        .content
-          %p= day_subject.description

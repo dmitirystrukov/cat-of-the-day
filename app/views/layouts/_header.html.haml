@@ -1,7 +1,7 @@
 %header#header
   .inner
     / Logo
-    %a.logo{:href => "index.html"}
+    = link_to root_path, class: 'logo' do
       %span.symbol
         = image_tag 'logo.png'
       %span.title Cat of the Day
@@ -15,4 +15,9 @@
   %h2 Menu
   %ul
     %li
-      %a{:href => "index.html"} Home
+      = link_to 'Home', root_path
+      - if sign_in?
+        = link_to 'Logout', destroy_user_session_path
+      - else
+        = link_to 'Sign in', new_user_session_path
+        = link_to 'Sign up', new_user_registration_path
