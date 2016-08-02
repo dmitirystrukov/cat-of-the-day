@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20160730103458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "day_themes", force: :cascade do |t|
+  create_table "day_subjects", force: :cascade do |t|
     t.integer  "user_id",     null: false
     t.string   "title",       null: false
     t.string   "description", null: false
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20160730103458) do
   end
 
   create_table "social_profiles", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "user_id",      null: false
     t.string   "uid"
     t.string   "service_name"
     t.datetime "created_at",   null: false

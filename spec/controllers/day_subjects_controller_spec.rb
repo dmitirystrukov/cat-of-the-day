@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe DaySubjectsController, type: :controller do
   let!(:day_subject) { create :day_subject }
-  let!(:user) { create :user}
+  let!(:user) { create :user }
 
   before { sign_in user }
 

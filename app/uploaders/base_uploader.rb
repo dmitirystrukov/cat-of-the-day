@@ -7,8 +7,8 @@ class BaseUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path 'users/fallback/' + [model.class.to_s.underscore,
-                                                                   mounted_as, version_name, 'profile_default.jpg'].compact.join('_')
+    ActionController::Base.helpers.asset_path 'users/fallback/' + [model.class.to_s.underscore, mounted_as,
+                                                                   version_name, 'profile_default.jpg'].compact.join('_')
   end
 
   def extension_white_list
