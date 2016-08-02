@@ -21,5 +21,8 @@ config/secrets.yml
 .rspec
 config/database.yml
 
+.env
+.ruby-version
+
 # Ignore Byebug command history file.
 .byebug_history
