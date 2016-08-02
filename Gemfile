@@ -25,6 +25,7 @@ gem 'jquery-ui-rails'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
 group :development do
   gem 'bullet'

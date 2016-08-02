@@ -35,7 +35,7 @@ module Omniauthable
     end
 
     def register_social_profile(service_name, uid)
-      social_profile = SocialProfile.find_by(service_name: service_name, uid: uid).first_or_create
+      social_profile = SocialProfile.find_or_create_by(service_name: service_name, uid: uid)
       if social_profile.user_id.present?
         return false if social_profile.user_id != id
       else

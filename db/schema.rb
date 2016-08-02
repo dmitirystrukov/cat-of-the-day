@@ -34,14 +34,14 @@ ActiveRecord::Schema.define(version: 20160730103458) do
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "user_id",    null: false
-    t.string   "first_name", null: false
-    t.string   "last_name",  null: false
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "social_profiles", force: :cascade do |t|
-    t.integer  "user_id",      null: false
+    t.integer  "user_id"
     t.string   "uid"
     t.string   "service_name"
     t.datetime "created_at",   null: false

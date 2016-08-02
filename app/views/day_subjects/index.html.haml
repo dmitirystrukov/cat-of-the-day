@@ -1,7 +1,14 @@
 %section.tiles
   - @day_subjects.each do |day_subject|
-    %article.style2
-      %span.image
-        = image_tag 'pic07.jpg'
-      = link_to day_subject_path(day_subject) do
-        %h2= day_subject.title
+    - if day_subject.owner?(current_user)
+      %article.style8
+        %span.image
+          = image_tag 'pic10.jpg'
+        = link_to day_subject_path(day_subject) do
+          %h2= day_subject.title
+    - else
+      %article.style2
+        %span.image
+          = image_tag 'pic02.jpg'
+        = link_to day_subject_path(day_subject) do
+          %h2= day_subject.title
