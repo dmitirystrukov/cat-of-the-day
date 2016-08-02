@@ -9,6 +9,8 @@ gem 'puma'
 gem 'rolify'
 gem 'draper'
 gem 'devise'
+gem 'rolify'
+gem 'cancancan'
 
 gem 'kaminari'
 gem 'pg'
@@ -25,6 +27,7 @@ gem 'jquery-ui-rails'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
 group :development do
   gem 'bullet'
