@@ -19,13 +19,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def sign_in_with_oauth_data(data)
-    profile_user = SocialProfile.owner_by_unique_id(data[:uid])
-
-    unless profile_user
-      temporary_email = "#{data[:uid]}@email.com}"
-      user = User.create(email: temporary_email)
-    end
-
-    sign_in :user, profile_user || user
+    user =  User.find_or_create_with_oauth(data)
+    sign_in :user, user
   end
 end

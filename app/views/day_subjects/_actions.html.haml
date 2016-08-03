@@ -1,0 +1,9 @@
+- if sign_in? && current_user.client?
+  %ul.icons
+    - User::SOCIAL_PROVIDERS.each do |provider|
+      %li{class: social_active?(provider)}
+        = link_to send("user_#{provider}_omniauth_authorize_path"), class: "icon style2 fa-#{provider}", title: "#{provider.capitalize} is #{social_active?(provider)}" do
+          %span.label=provider.capitalize
+  %ul.actions
+    %li= link_to 'Create Day Subject', new_day_subject_path, class: 'button small'
+    %li= link_to 'Statistic', '#', class: 'button small'

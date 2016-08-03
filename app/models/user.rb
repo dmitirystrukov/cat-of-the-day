@@ -4,6 +4,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:facebook, :vkontakte]
+
+  rolify
+
+  SOCIAL_PROVIDERS = %w(facebook vkontakte).freeze
+
   has_one  :profile
   has_many :day_subjects
   has_many :social_profiles, dependent: :destroy
@@ -13,5 +18,13 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def social_profile_exist?(name)
+    social_profiles.where(service_name: name).any?
+  end
+
+  def client?
+    has_role? :client
   end
 end

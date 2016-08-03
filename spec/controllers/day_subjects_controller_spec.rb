@@ -34,11 +34,32 @@ RSpec.describe DaySubjectsController, type: :controller do
     subject { get :new }
 
     it 'assings a new day_subject' do
+      user.add_role :client
+
       subject
       expect(assigns(:day_subject)).to be_a_new DaySubject
     end
 
-    it { is_expected.to render_template :new }
+    context 'user permissions check' do
+      it 'user role' do
+        user.add_role :user
+
+        expect { subject }.to raise_error(CanCan::AccessDenied)
+      end
+
+      it 'guest role' do
+        sign_out :user
+
+        expect { subject }.to raise_error(CanCan::AccessDenied)
+      end
+
+      it 'client role' do
+        user.add_role :client
+
+        expect(subject).to render_template :new
+        expect { subject }.to_not raise_error
+      end
+    end
   end
 
   describe '#create' do
@@ -48,6 +69,8 @@ RSpec.describe DaySubjectsController, type: :controller do
       subject { post :create, params }
 
       it 'creates a new day_subject' do
+        user.add_role :client
+
         expect { subject }.to change { DaySubject.count }.by(1)
         expect(assigns(:day_subject)).to eq DaySubject.last
         expect(subject).to redirect_to root_path
@@ -62,16 +85,19 @@ RSpec.describe DaySubjectsController, type: :controller do
       subject { post :create, invalid_params }
 
       it 'tries to create a new day_subject' do
-        expect { subject }.to change { DaySubject.count }.by(0)
-      end
+        user.add_role :client
 
-      it { is_expected.to render_template :new }
+        expect { subject }.to change { DaySubject.count }.by(0)
+        is_expected.to render_template :new
+      end
     end
   end
 
   describe '#destroy' do
     context 'when user is owner' do
       let!(:another_day_subject) { create :day_subject, user: user }
+
+      before { user.add_role :client }
 
       subject { delete :destroy, id: another_day_subject.id }
 
@@ -82,6 +108,8 @@ RSpec.describe DaySubjectsController, type: :controller do
     end
 
     context 'when user is not owner' do
+      before { user.add_role :client }
+
       subject { delete :destroy, id: day_subject.id }
 
       it 'tries to delete the day_subject' do
