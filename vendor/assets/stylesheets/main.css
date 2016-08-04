@@ -1940,7 +1940,10 @@
 					border-top: 0;
 					padding-top: 0;
 				}
-
+    ul.icons li.active a {
+			color: #fff!important;
+      background: #1b95e0!important;
+		}
 		ul.icons {
 			cursor: default;
 			list-style: none;

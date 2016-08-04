@@ -1,8 +1,12 @@
 class DaySubjectsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  authorize_resource
 
   def index
     @day_subjects = DaySubject.all
+  end
+
+  def edit
+    @day_subject = DaySubject.find(params[:id])
   end
 
   def show
@@ -38,6 +42,6 @@ class DaySubjectsController < ApplicationController
   private
 
   def day_subject_params
-    params.require(:day_subject).permit(:user_id, :title, :description)
+    params.require(:day_subject).permit(:user_id, :title, :description, image: [:url])
   end
 end

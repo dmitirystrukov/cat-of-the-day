@@ -6,17 +6,19 @@ gem 'rails', '~> 4.2.7'
 
 gem 'puma'
 
-gem 'rolify'
 gem 'draper'
 gem 'devise'
+gem 'rolify'
+gem 'cancancan'
 
-gem 'kaminari'
 gem 'pg'
 gem 'simple_form'
 gem 'friendly_id'
-gem 'carrierwave'
+gem 'kaminari'
 
+gem 'carrierwave'
 gem 'mini_magick'
+
 gem 'sass'
 gem 'haml'
 
@@ -25,6 +27,7 @@ gem 'jquery-ui-rails'
 
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-vkontakte'
 
 group :development do
   gem 'bullet'
@@ -37,6 +40,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '3.1.1'
   gem 'capybara', '~> 2.5'
+  gem 'capybara-screenshot'
   gem 'capybara-screenshot'
   gem 'cucumber-rails', require: false
   gem 'capybara-webkit'
