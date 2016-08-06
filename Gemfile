@@ -41,7 +41,6 @@ group :test do
   gem 'shoulda-matchers', '3.1.1'
   gem 'capybara', '~> 2.5'
   gem 'capybara-screenshot'
-  gem 'capybara-screenshot'
   gem 'cucumber-rails', require: false
   gem 'capybara-webkit'
   gem 'launchy'
