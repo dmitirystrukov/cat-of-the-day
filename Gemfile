@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.0'
 
-gem 'rails', '~> 4.2.7'
+gem 'rails', '4.2.7'
 
 gem 'puma'
 
@@ -16,8 +16,7 @@ gem 'simple_form'
 gem 'friendly_id'
 gem 'kaminari'
 
-gem 'carrierwave'
-gem 'mini_magick'
+gem 'paperclip'
 
 gem 'sass'
 gem 'haml'

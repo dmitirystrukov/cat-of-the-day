@@ -9,7 +9,7 @@ Rails.application.configure do
 
   config.action_mailer.raise_delivery_errors = false
 
-  config.active_support.deprecation = :debug
+  config.active_support.deprecation = :log
 
   config.active_record.migration_error = :page_load
 

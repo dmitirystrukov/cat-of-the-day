@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   rolify
 
   SOCIAL_PROVIDERS = %w(facebook vkontakte).freeze
-
+  
   has_one  :profile
   has_many :day_subjects
   has_many :social_profiles, dependent: :destroy

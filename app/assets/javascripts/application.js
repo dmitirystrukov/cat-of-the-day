@@ -15,3 +15,11 @@
 //= require skel
 //= require util
 //= require main
+//= require jquery.MultiFile
+
+$(document).ready(function() {
+  $('#day_subject_image_attributes_image').MultiFile({
+    max: 10,
+    accept: 'gif|jpg|png'
+  });
+});

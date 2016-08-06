@@ -44,6 +44,6 @@ class DaySubjectsController < ApplicationController
   private
 
   def day_subject_params
-    params.require(:day_subject).permit(:user_id, :title, :description, image: [:url])
+    params.require(:day_subject).permit(:user_id, :title, :description, image_attributes: [:image])
   end
 end
