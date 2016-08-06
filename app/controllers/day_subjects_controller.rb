@@ -1,8 +1,10 @@
 class DaySubjectsController < ApplicationController
   authorize_resource
 
+  PER_PAGE = 10
+
   def index
-    @day_subjects = DaySubject.all
+    @day_subjects = DaySubject.page(params[:page]).per(PER_PAGE)
   end
 
   def edit
