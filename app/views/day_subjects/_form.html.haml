@@ -1,4 +1,5 @@
 = simple_form_for day_subject do |f|
   = f.input :title
   = f.input :description
+  = f.file_field :images, multiple: true, class: 'images-uploader'
   = f.submit

@@ -5,6 +5,8 @@ class CreateDaySubjects < ActiveRecord::Migration
       t.string  :title,       null: false
       t.string  :description, null: false
 
+      t.json    :images
+
       t.timestamps null: false
     end
   end

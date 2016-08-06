@@ -15,3 +15,11 @@
 //= require skel
 //= require util
 //= require main
+//= require jquery.MultiFile
+
+$(document).ready(function() {
+  $('.images-uploader').MultiFile({
+    max: 10,
+    accept: 'gif|jpg|png'
+  });
+});

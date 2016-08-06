@@ -13,6 +13,7 @@
 
 # Ignore all logfiles and tempfiles.
 /coverage/*
+/public/*
 /log/*
 /tmp/*
 !/log/.keep
