@@ -18,7 +18,7 @@
 //= require jquery.MultiFile
 
 $(document).ready(function() {
-  $('#day_subject_image_attributes_image').MultiFile({
+  $('.images-uploader').MultiFile({
     max: 10,
     accept: 'gif|jpg|png'
   });

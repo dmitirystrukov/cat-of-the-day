@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   root 'day_subjects#index'
 
-  resources :day_subjects
+  resources :day_subjects do
+    resources :day_subject_images, only: [:create, :update, :destroy]
+  end
 end

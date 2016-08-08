@@ -16,7 +16,8 @@ gem 'simple_form'
 gem 'friendly_id'
 gem 'kaminari'
 
-gem 'paperclip'
+gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'sass'
 gem 'haml'

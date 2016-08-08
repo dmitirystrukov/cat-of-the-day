@@ -212,7 +212,7 @@ if (window.jQuery)(function ($) {
 				// Bind a new element
 				MultiFile.addSlave = function (slave, slave_count) {
 					//if(window.console) console.log('MultiFile.addSlave',slave_count);
-					
+
 					// Keep track of how many elements have been displayed
 					MultiFile.n++;
 					// Add reference to master element
@@ -250,7 +250,7 @@ if (window.jQuery)(function ($) {
 
 					// Remember most recent slave
 					MultiFile.current = slave;
-					
+
 					// We'll use jQuery from now on
 					slave = $(slave);
 
@@ -343,12 +343,12 @@ if (window.jQuery)(function ($) {
 							if(customError && customError!=''){
 								ERROR[ERROR.length] = p(customError);
 							};
-								
+
 							// add up size of files selected
 							newfs_size += file.size;
 
 						});
-						
+
 						// add up total for all files selected (existing and new)
 						total_size += newfs_size;
 
@@ -419,6 +419,15 @@ if (window.jQuery)(function ($) {
 							slave.after(newEle);
 
 							// Bind functionality
+							var source_name = $(slave).attr('name');
+							var current_count = parseInt(source_name.replace(/[^0-9]/g,''));
+							var total_count   = $('.images-uploader').length - 1;
+
+							source_name = source_name.split('[' + current_count + ']');
+							source_name = source_name[0] + '[' + total_count + ']' + source_name[1];
+
+							slave.attr('name', source_name);
+
 							MultiFile.addSlave(newEle[0], slave_count + 1);
 
 							// Update list
@@ -453,7 +462,7 @@ if (window.jQuery)(function ($) {
 					//# Trigger Event! onFileAppend
 					MultiFile.trigger('FileAppend', slave, MultiFile, files);
 					//# End Event!
-					
+
 					var names = $('<span/>');
 					$.each(files, function (i, file) {
 						var v = String(file.name || '' ).replace(/[&<>'"]/g, function(c) { return '&#'+c.charCodeAt()+';'; }),
@@ -474,7 +483,7 @@ if (window.jQuery)(function ($) {
 										.replace(/\$(preview)/gi, p)
 										.replace(/\$(i)/gi, i)
 								);
-						
+
 						// now supports preview via locale string.
 						// just add an <img class='MultiFile-preview'/> anywhere within the "file" string
 						label.find('img.MultiFile-preview').each(function(){
@@ -509,7 +518,7 @@ if (window.jQuery)(function ($) {
 						var
 							r = $('<div class="MultiFile-label"></div>'),
 							b = $('<a class="MultiFile-remove" href="#' + MultiFile.wrapID + '">' + MultiFile.STRING.remove + '</a>')
-								
+
 								// ********
 								// TODO:
 								// refactor this as a single event listener on the control's
@@ -519,7 +528,7 @@ if (window.jQuery)(function ($) {
 
 									// get list of files being removed
 									var files_being_removed = FILE_LIST(slave);
-									
+
 									//# Trigger Event! onFileRemove
 									MultiFile.trigger('FileRemove', slave, MultiFile, files_being_removed);
 									//# End Event!
@@ -639,20 +648,20 @@ if (window.jQuery)(function ($) {
 		 * @example $('#selector').MultiFile('data');
 		 */
 		data: function () {
-			
+
 			// analyse this element
 			var e = $(this), b = e.is('.MultiFile-wrap');
-			
+
 			// get control wrapper
 			var wp = b ? e : e.data('MultiFile-wrap');
 			if(!wp || !wp.length)
 				return !console.error('Could not find MultiFile control wrapper');
-			
+
 			// get control data from wrapper
 			var mf = wp.data('MultiFile');
 			if(!mf)
 				return !console.error('Could not find MultiFile data in wrapper');
-			
+
 			// return data
 			return mf || {};
 		},
@@ -758,7 +767,7 @@ if (window.jQuery)(function ($) {
 			// automatically re-enable for novice users
 			window.clearTimeout($.fn.MultiFile.reEnableTimeout);
 			$.fn.MultiFile.reEnableTimeout = window.setTimeout($.fn.MultiFile.reEnableEmpty, 500);
-			
+
 			return $(o).each(function () {
 				this.disabled = true
 			}).addClass(klass);
