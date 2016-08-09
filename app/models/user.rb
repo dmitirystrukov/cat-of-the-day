@@ -16,8 +16,14 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :profile, update_only: true
   delegate :first_name, :last_name, to: :profile, allow_nil: true
 
+  after_create :init_role
+
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def init_role
+    add_role :consumer
   end
 
   def social_profile_exist?(name)
@@ -26,5 +32,9 @@ class User < ActiveRecord::Base
 
   def client?
     has_role? :client
+  end
+
+  def consumer?
+    has_role? :consumer
   end
 end

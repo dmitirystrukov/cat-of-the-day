@@ -1,0 +1,24 @@
+- if sign_in? && current_user.consumer?
+  .image-list.row
+    - @day_subject.images.each do |image|
+      .image.4u
+        = image_tag image.url.thumb
+        %input{type: 'checkbox', id: "image-#{image.id}", name: "image-#{image.id}"}
+        %label{for: "image-#{image.id}"} Check to send
+  %form{:action => "#", :method => "post"}
+    .row.uniform
+      %div{:class => "12u$"}
+        .select-wrapper
+          %select#demo-category{:name => "demo-category"}
+            %option{:value => ""} - Social network -
+            %option{:value => "1"} Vkontakte
+            %option{:value => "1"} Facebook
+      %div{:class => "12u$"}
+        %ul.actions
+          %li
+            %input.special{:type => "submit", :value => "Send Images"}/
+          %li
+            %input{:type => "reset", :value => "Reset"}/
+- else
+  - @day_subject.images.each do |image|
+    = image_tag image.url.thumb
