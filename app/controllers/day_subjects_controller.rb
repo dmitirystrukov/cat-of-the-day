@@ -1,7 +1,7 @@
 class DaySubjectsController < ApplicationController
   authorize_resource
 
-  PER_PAGE = 10
+  PER_PAGE = 9
 
   def index
     @day_subjects = DaySubject.page(params[:page]).per(PER_PAGE)
@@ -17,6 +17,7 @@ class DaySubjectsController < ApplicationController
 
   def new
     @day_subject = current_user.day_subjects.build
+    @day_subject.day_subject_images.build
   end
 
   def create
@@ -44,6 +45,6 @@ class DaySubjectsController < ApplicationController
   private
 
   def day_subject_params
-    params.require(:day_subject).permit(:user_id, :title, :description, image: [:url])
+    params.require(:day_subject).permit(:user_id, :title, :description, day_subject_images_attributes: [:url])
   end
 end
