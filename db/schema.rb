@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20160803110723) do
   enable_extension "plpgsql"
 
   create_table "day_subject_images", force: :cascade do |t|
-    t.integer  "user_id",        null: false
     t.integer  "day_subject_id", null: false
     t.string   "url",            null: false
     t.datetime "created_at",     null: false

@@ -17,14 +17,13 @@ class DaySubjectsController < ApplicationController
 
   def new
     @day_subject = current_user.day_subjects.build
+    @day_subject.day_subject_images.build
   end
 
   def create
     @day_subject = current_user.day_subjects.build(day_subject_params)
 
     if @day_subject.save
-      params[:images].each { |image| @day_subject.day_subject_images.create(image) }
-
       redirect_to root_path
     else
       render :new
@@ -46,6 +45,6 @@ class DaySubjectsController < ApplicationController
   private
 
   def day_subject_params
-    params.require(:day_subject).permit(:user_id, :title, :description)
+    params.require(:day_subject).permit(:user_id, :title, :description, day_subject_images_attributes: [:url])
   end
 end
