@@ -2,5 +2,4 @@
   = @day_subject.title
 %p
   = @day_subject.description
-- @day_subject.images.each do |image|
-  = image_tag image.url.thumb
+= render 'images'

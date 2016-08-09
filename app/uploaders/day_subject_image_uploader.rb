@@ -1,5 +1,5 @@
 class DaySubjectImageUploader < BaseUploader
   version :thumb do
-    process resize_and_pad: [150, 100]
+    process resize_and_pad: [350, 300]
   end
 end
