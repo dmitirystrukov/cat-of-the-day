@@ -1,11 +1,11 @@
 - if sign_in? && current_user.consumer?
-  .image-list.row
-    - @day_subject.images.each do |image|
-      .image.4u
-        = image_tag image.url.thumb
-        %input{type: 'checkbox', id: "image-#{image.id}", name: "image-#{image.id}"}
-        %label{for: "image-#{image.id}"} Check to send
-  %form{:action => "#", :method => "post"}
+  = simple_form_for social_send_path, url: social_send_path  do |f|
+    .image-list.row
+      - @day_subject.images.each do |image|
+        .image.4u
+          = image_tag image.url.thumb
+          %input{type: 'checkbox', id: "image-#{image.id}", name: "image-#{image.id}"}
+          %label{for: "image-#{image.id}"} Check to send
     .row.uniform
       %div{:class => "12u$"}
         .select-wrapper
@@ -16,7 +16,7 @@
       %div{:class => "12u$"}
         %ul.actions
           %li
-            %input.special{:type => "submit", :value => "Send Images"}/
+            = f.submit class: 'special', value: 'Send Images'
           %li
             %input{:type => "reset", :value => "Reset"}/
 - else

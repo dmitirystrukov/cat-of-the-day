@@ -25,8 +25,10 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+gem 'twitter'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 gem 'omniauth-vkontakte'
 
 group :development do
