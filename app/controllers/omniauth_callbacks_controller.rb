@@ -17,12 +17,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     oauth_data = request.env['omniauth.auth']
 
     sign_in_with_oauth_data(oauth_data) unless user_signed_in?
-    current_user.register_social_profile({ uid: oauth_data.uid, service_name: oauth_data.provider }, social_profile_attributes(oauth_data))
+    current_user.register_social_profile({ uid: oauth_data.uid, service_name: oauth_data.provider }, twitter_attributes(oauth_data))
 
     redirect_to root_path
   end
 
-  def social_profile_attributes(params)
+  def twitter_attributes(params)
     {
       consumer_key:        params[:extra][:access_token].consumer.key,
       consumer_secret:     params[:extra][:access_token].consumer.secret,

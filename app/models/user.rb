@@ -30,6 +30,14 @@ class User < ActiveRecord::Base
     social_profiles.where(service_name: name).any?
   end
 
+  def twitter_profile
+    social_profiles.find_by(service_name: :twitter)
+  end
+
+  def twitter_data
+    twitter_profile.data
+  end
+
   def client?
     has_role? :client
   end

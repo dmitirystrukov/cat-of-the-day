@@ -36,7 +36,7 @@ module Omniauthable
 
     def register_social_profile(oauth_data, data)
       social_profile = SocialProfile.find_or_create_by(oauth_data)
-      social_profile.update(data)
+      social_profile.update(data: data.to_json)
 
       if social_profile.user_id.present?
         return false if social_profile.user_id != id

@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   root 'day_subjects#index'
 
   resources :day_subjects
+  match 'social_send' => 'social_send#create', via: :post
 end

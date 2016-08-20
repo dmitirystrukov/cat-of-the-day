@@ -54,13 +54,10 @@ ActiveRecord::Schema.define(version: 20160803110723) do
   create_table "social_profiles", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "uid"
-    t.string   "consumer_key"
-    t.string   "consumer_secret"
-    t.string   "access_token"
-    t.string   "access_token_secret"
     t.string   "service_name"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.json     "data"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "social_profiles", ["user_id", "service_name"], name: "index_social_profiles_on_user_id_and_service_name", unique: true, using: :btree
