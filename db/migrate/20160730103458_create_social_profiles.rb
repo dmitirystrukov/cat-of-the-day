@@ -4,6 +4,7 @@ class CreateSocialProfiles < ActiveRecord::Migration
       t.integer :user_id
       t.string  :uid
       t.string  :service_name
+      t.json    :data
 
       t.timestamps null: false
     end

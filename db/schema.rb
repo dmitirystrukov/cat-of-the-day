@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20160803110723) do
     t.integer  "user_id"
     t.string   "uid"
     t.string   "service_name"
+    t.json     "data"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

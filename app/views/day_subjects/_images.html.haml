@@ -1,24 +1,27 @@
 - if sign_in? && current_user.consumer?
-  .image-list.row
-    - @day_subject.images.each do |image|
-      .image.4u
-        = image_tag image.url.thumb
-        %input{type: 'checkbox', id: "image-#{image.id}", name: "image-#{image.id}"}
-        %label{for: "image-#{image.id}"} Check to send
-  %form{:action => "#", :method => "post"}
+  = simple_form_for social_send_path, url: social_send_path  do |f|
+    .image-list.row
+      - @day_subject.images.each do |image|
+        .image.4u
+          = image_tag image.url.thumb
+          = f.input_field :social_urls, type: :checkbox, id: "image-#{image.id}", name: 'social[urls][]', value: image.url
+          %label{for: "image-#{image.id}"} Check to send
     .row.uniform
-      %div{:class => "12u$"}
+      %div{class: '12u$'}
         .select-wrapper
-          %select#demo-category{:name => "demo-category"}
-            %option{:value => ""} - Social network -
-            %option{:value => "1"} Vkontakte
-            %option{:value => "1"} Facebook
-      %div{:class => "12u$"}
+          %select#demo-category{name: 'social[service]'}
+            %option{value: ''} - Social network -
+            - User::SOCIAL_PROVIDERS.each do |provider|
+              %option{value: "#{provider.capitalize}Service" }= provider.capitalize
+      %div{class: '12u$'}
+        .textarea-wrapper
+          = f.input_field :message, as: :text, name: 'social[message]', placeholder: 'Enter your message', rows: '1'
+      %div{class: '12u$'}
         %ul.actions
           %li
-            %input.special{:type => "submit", :value => "Send Images"}/
+            = f.submit class: 'special', value: 'Send Images'
           %li
-            %input{:type => "reset", :value => "Reset"}/
+            %input{type: 'reset', value: 'Reset'}/
 - else
   - @day_subject.images.each do |image|
     = image_tag image.url.thumb

@@ -3,11 +3,11 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook, :vkontakte]
+         :omniauthable, omniauth_providers: [:facebook, :twitter, :vkontakte]
 
   rolify
 
-  SOCIAL_PROVIDERS = %w(facebook vkontakte).freeze
+  SOCIAL_PROVIDERS = %w(facebook twitter vkontakte).freeze
 
   has_one  :profile
   has_many :day_subjects
@@ -18,16 +18,24 @@ class User < ActiveRecord::Base
 
   after_create :init_role
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
-
   def init_role
     add_role :consumer
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def social_profile_exist?(name)
     social_profiles.where(service_name: name).any?
+  end
+
+  def twitter_profile
+    social_profiles.find_by(service_name: :twitter)
+  end
+
+  def twitter_data
+    twitter_profile.data
   end
 
   def client?
