@@ -4,5 +4,10 @@ Rails.application.routes.draw do
   root 'day_subjects#index'
 
   resources :day_subjects
-  match 'social_send' => 'social_send#create', via: :post
+
+  namespace :account do
+    get 'statistic' => 'statistic#index'
+  end
+
+  post 'social' => 'social#create'
 end

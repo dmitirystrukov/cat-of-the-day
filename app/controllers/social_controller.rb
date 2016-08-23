@@ -1,7 +1,7 @@
-class SocialSendController < ApplicationController
+class SocialController < ApplicationController
   def create
     service = social_params[:service].constantize.new(current_user.twitter_data)
-    service.update_with_images(social_params[:message], social_params[:urls])
+    service.update_with_images(social_params[:message], social_params[:urls], current_user)
 
     redirect_to :back
   end

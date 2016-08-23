@@ -1,5 +1,5 @@
 - if sign_in? && current_user.consumer?
-  = simple_form_for social_send_path, url: social_send_path  do |f|
+  = simple_form_for social_path, url: social_path  do |f|
     .image-list.row
       - @day_subject.images.each do |image|
         .image.4u

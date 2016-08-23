@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   has_one  :profile
   has_many :day_subjects
+  has_many :social_posts
   has_many :social_profiles, dependent: :destroy
 
   accepts_nested_attributes_for :profile, update_only: true
