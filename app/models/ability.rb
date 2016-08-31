@@ -18,6 +18,6 @@ class Ability
   end
 
   def guest_abilities
-    can :read, :all
+    can :read, DaySubject
   end
 end

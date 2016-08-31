@@ -19,9 +19,10 @@
       %div{class: '12u$'}
         %ul.actions
           %li
+            = f.hidden_field :day_subject_id, name: 'social[day_subject_id]', value: params[:id]
             = f.submit class: 'special', value: 'Send Images'
           %li
-            %input{type: 'reset', value: 'Reset'}/
+            %input{type: 'reset', value: 'Reset'}
 - else
   - @day_subject.images.each do |image|
     = image_tag image.url.thumb

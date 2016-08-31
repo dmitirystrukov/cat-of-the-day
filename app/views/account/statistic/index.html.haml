@@ -1,18 +1,11 @@
 %section
   %h4 Provisional Statistic
-  .table-wrapper
-    %table
-      %thead
-        %tr
-          - User::SOCIAL_PROVIDERS.each do |provider|
-            %th=provider.capitalize
-      %tbody
-        %tr
-          - User::SOCIAL_PROVIDERS.each do |provider|
-            %td= "Total posts: #{posts_total(@statistic, provider)}"
-        %tr
-          %td Total likes: 10
-          %td Total likes: 10
-          %td Total likes: 10
-%section
-  %h4 Recent posts
+  %ul.icons.statistic-icons
+    - User::SOCIAL_PROVIDERS.each do |provider|
+      %li
+        %a{href: '#', class: "icon style2 fa-#{provider}"}
+          %span.label= provider.capitalize
+        .statistic-block
+          %span= "Posts: #{posts_total(@statistic, provider)}"
+          %span= "Likes: #{likes_total(@statistic, provider)}"
+          %span= "Reposts: #{reposts_total(@statistic, provider)}"
