@@ -9,6 +9,11 @@ class User < ActiveRecord::Base
 
   SOCIAL_PROVIDERS = %w(facebook twitter vkontakte).freeze
 
+  SERVICE_TO_NAME = {
+    'TwitterService'  => 'twitter',
+    'FacebookService' => 'facebook'
+  }.freeze
+
   has_one  :profile
   has_many :day_subjects
   has_many :social_posts
@@ -35,8 +40,16 @@ class User < ActiveRecord::Base
     social_profiles.find_by(service_name: :twitter)
   end
 
+  def facebook_profile
+    social_profiles.find_by(service_name: :facebook)
+  end
+
   def twitter_data
     twitter_profile.data
+  end
+
+  def facebook_data
+    facebook_profile.data
   end
 
   def client?
