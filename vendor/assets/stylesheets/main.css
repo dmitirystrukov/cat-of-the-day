@@ -3377,3 +3377,28 @@
 .pagination span:hover {
   box-shadow: none;
 }
+
+.statistic-icons {
+  font-size: 36px;
+}
+
+.statistic-icons .statistic-block {
+  margin-top: 15px;
+}
+
+.statistic-icons li:first-of-type {
+  margin: 0 60px 0 0;
+}
+
+.statistic-icons li {
+  margin: 0 60px;
+}
+
+.statistic-icons li a {
+  border-radius: 15px!important;
+}
+
+.statistic-icons li span {
+  display: block;
+  font-size: 18px;
+}
