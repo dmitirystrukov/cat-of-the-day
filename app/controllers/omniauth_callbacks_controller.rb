@@ -17,7 +17,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     oauth_data = request.env['omniauth.auth']
 
     sign_in_with_oauth_data(oauth_data) unless user_signed_in?
-    current_user.register_social_profile({ uid: oauth_data.uid, service_name: oauth_data.provider }, twitter_attributes(oauth_data))
+
+    current_user.register_social_profile({ uid: oauth_data.uid, service_name: oauth_data.provider }, send("#{params[:action]}_attributes", oauth_data))
 
     redirect_to root_path
   end
@@ -29,6 +30,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       access_token:        params[:credentials][:token],
       access_token_secret: params[:credentials][:secret]
     }
+  end
+
+  def facebook_attributes(params)
+    { token:      params[:credentials][:token] }
   end
 
   def sign_in_with_oauth_data(data)

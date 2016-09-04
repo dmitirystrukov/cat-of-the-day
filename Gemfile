@@ -25,6 +25,7 @@ gem 'haml'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
+gem 'koala'
 gem 'twitter'
 gem 'omniauth'
 gem 'omniauth-facebook'
