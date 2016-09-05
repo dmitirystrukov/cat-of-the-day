@@ -34,6 +34,7 @@ gem 'omniauth-vkontakte'
 
 group :production, :release, :staging do
   gem 'uglifier'
+  gem 'factory_girl_rails'
   gem 'rails_12factor'
   gem 'heroku_rails_deflate'
 end

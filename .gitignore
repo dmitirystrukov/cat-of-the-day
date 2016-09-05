@@ -21,7 +21,6 @@
 .rspec
 .rubocop.yml
 
-.env
 .ruby-version
 
 # Ignore Byebug command history file.
