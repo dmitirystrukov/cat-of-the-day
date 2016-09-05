@@ -18,9 +18,12 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+config/secrets.yml
+config/database.yml
 .rspec
 .rubocop.yml
 
+.env
 .ruby-version
 
 # Ignore Byebug command history file.

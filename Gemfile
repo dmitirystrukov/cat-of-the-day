@@ -30,7 +30,6 @@ gem 'twitter'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'omniauth-vkontakte'
 
 group :production, :release, :staging do
   gem 'uglifier'
