@@ -18,13 +18,9 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
-config/secrets.yml
 config/database.yml
 .rspec
 .rubocop.yml
-
-.env
-.ruby-version
 
 .env
 .ruby-version
