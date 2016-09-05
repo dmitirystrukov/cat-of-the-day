@@ -26,8 +26,5 @@ config/database.yml
 .env
 .ruby-version
 
-.env
-.ruby-version
-
 # Ignore Byebug command history file.
 .byebug_history

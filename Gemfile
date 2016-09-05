@@ -32,6 +32,12 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'omniauth-vkontakte'
 
+group :production, :release, :staging do
+  gem 'uglifier'
+  gem 'rails_12factor'
+  gem 'heroku_rails_deflate'
+end
+
 group :development do
   gem 'bullet'
   gem 'byebug'
