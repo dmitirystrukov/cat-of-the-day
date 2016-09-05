@@ -30,7 +30,13 @@ gem 'twitter'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'omniauth-vkontakte'
+
+group :production, :release, :staging do
+  gem 'uglifier'
+  gem 'factory_girl_rails'
+  gem 'rails_12factor'
+  gem 'heroku_rails_deflate'
+end
 
 group :development do
   gem 'bullet'

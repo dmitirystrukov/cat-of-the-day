@@ -3,11 +3,11 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook, :twitter, :vkontakte]
+         :omniauthable, omniauth_providers: [:facebook, :twitter]
 
   rolify
 
-  SOCIAL_PROVIDERS = %w(facebook twitter vkontakte).freeze
+  SOCIAL_PROVIDERS = %w(facebook twitter).freeze
 
   SERVICE_TO_NAME = {
     'TwitterService'  => 'twitter',

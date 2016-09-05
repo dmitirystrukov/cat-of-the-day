@@ -7,10 +7,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
     process_callback
   end
 
-  def vkontakte
-    process_callback
-  end
-
   private
 
   def process_callback
