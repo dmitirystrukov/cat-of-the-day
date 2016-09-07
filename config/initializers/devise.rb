@@ -11,6 +11,8 @@ Devise.setup do |config|
   config.reconfirmable = true
   config.password_length = 6..128
 
+  config.secret_key = ENV['DEVISE_SECRET_KEY']
+
   config.expire_all_remember_me_on_sign_out = true
   config.email_regexp = /\A[^@\s]+@[^@\s]+\z/
 
