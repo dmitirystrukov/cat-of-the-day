@@ -1,4 +1,3 @@
-@user = FactoryGirl.create(:user_with_profile, email: 'admin@yahoo.com')
-@user.add_role :client
+@user = FactoryGirl.create(:user, :with_role, user_role: :client, email: 'client@yahoo.com')
 
-50.times { FactoryGirl.create(:day_subject, user: @user) }
+5.times { FactoryGirl.create(:day_subject, user: @user) }

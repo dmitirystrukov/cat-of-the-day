@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Home page', js: true do
-  let!(:user) { create(:client_role) }
+  let!(:user) { create(:user, :with_role, user_role: :client) }
 
   context 'social links activation' do
     let(:socials) { User::SOCIAL_PROVIDERS }
