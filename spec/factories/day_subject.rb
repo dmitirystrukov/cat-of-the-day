@@ -6,5 +6,9 @@ FactoryGirl.define do
 
     title       { Faker::Name.title[0, 30] }
     description { Faker::Lorem.characters(100) }
+
+    factory :day_subject_with_image do
+      after(:create) { |day_subject| create(:day_subject_image, day_subject: day_subject) }
+    end
   end
 end

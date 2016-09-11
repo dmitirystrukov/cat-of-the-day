@@ -3,16 +3,16 @@ FactoryGirl.define do
     email    { Faker::Internet.email }
     password { 'password' }
 
-    factory :user_with_profile do
-      after(:create) { |user| create(:profile, user: user) }
+    after(:create) do |user| 
+      create(:profile, user: user)
     end
 
-    factory :user_role do
-      after(:create) { |user| user.add_role :client }
-    end
+    trait(:with_role) do
+      ignore do
+        user_role nil
+      end
 
-    factory :client_role do
-      after(:create) { |user| user.add_role :client }
+      after(:create) { |user, evaluator| user.add_role evaluator.user_role }
     end
   end
 end
