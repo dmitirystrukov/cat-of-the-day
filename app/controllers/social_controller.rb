@@ -1,5 +1,5 @@
 class SocialController < ApplicationController
-  before_action :verify_permission!, if: -> { [social_params[:service].empty?, service_plugged?(social_params[:service])] }
+  before_action :verify_permission!
 
   def create
     service_name =  User::SERVICE_TO_NAME[social_params[:service]]
@@ -13,6 +13,8 @@ class SocialController < ApplicationController
   private
 
   def verify_permission!
+    return unless service_plugged?(social_params[:service])
+
     redirect_to day_subject_path(social_params[:day_subject_id]), flash: { error: 'You not choose service or not plugged it ' }
   end
 
