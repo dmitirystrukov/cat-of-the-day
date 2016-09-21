@@ -3,12 +3,12 @@ FactoryGirl.define do
     email    { Faker::Internet.email }
     password { 'password' }
 
-    after(:create) do |user| 
+    after(:create) do |user|
       create(:profile, user: user)
     end
 
     trait(:with_role) do
-      ignore do
+      transient do
         user_role nil
       end
 
