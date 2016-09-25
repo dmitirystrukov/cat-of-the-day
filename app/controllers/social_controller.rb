@@ -7,7 +7,7 @@ class SocialController < ApplicationController
     service = social_params[:service].constantize.new(current_user.send("#{service_name}_data"))
     service.update_with_image(social_params, current_user)
 
-    redirect_to :back
+    redirect_to :back, flash: { notice: 'Your message successfully sent' }
   end
 
   private

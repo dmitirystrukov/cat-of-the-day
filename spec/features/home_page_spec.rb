@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Home page', js: true do
-  let!(:user) { create(:user, :with_role, user_role: :client) }
+  let!(:user) { create(:user, :with_role, user_role: :consumer) }
 
   context 'social links activation' do
     let(:socials) { User::SOCIAL_PROVIDERS }
@@ -27,16 +27,16 @@ feature 'Home page', js: true do
 
       login(user)
 
-      expect(page).to have_link('Create Day Subject')
-      expect(page).to have_link('Statistic')
+      expect(page).to_not have_link('Create Day Subject')
+      expect(page).to_not have_link('Statistic')
 
-      user.remove_role :client
-      user.add_role :user
+      user.remove_role :consumer
+      user.add_role :client
 
       visit root_path
 
-      expect(page).to_not have_link('Create Day Subject')
-      expect(page).to_not have_link('Statistic')
+      expect(page).to have_link('Create Day Subject')
+      expect(page).to have_link('Statistic')
     end
   end
 end
