@@ -5,10 +5,16 @@ class FacebookService
   end
 
   def update_with_image(social_params, user)
-    file = File.new("#{Dir.pwd}/public#{social_params[:image]}")
-    post = @client.put_picture(file, { message: social_params[:message] })
+    post = @client.put_picture(image_path_by_id(social_params[:image_id]), { message: social_params[:message] })
 
-    user.social_posts.create(post_id: post['id'], day_subject_id: social_params[:day_subject_id], service_name: self.class)
+    user.social_posts.create(post_id: post['id'],
+                             day_subject_id: social_params[:day_subject_id],
+                             day_subject_image_id: social_params[:image_id],
+                             service_name: self.class)
+  end
+
+  def image_path_by_id(image_id)
+    File.new(DaySubjectImage.find(image_id).url.file.file)
   end
 
   def favorite_count(tweet_id)

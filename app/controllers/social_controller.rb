@@ -25,6 +25,6 @@ class SocialController < ApplicationController
   end
 
   def social_params
-    params.require(:social).permit(:message, :service, :day_subject_id, :image)
+    params.require(:social).permit(:message, :service, :day_subject_id, :image_id)
   end
 end

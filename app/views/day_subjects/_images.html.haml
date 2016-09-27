@@ -4,7 +4,7 @@
       - @day_subject.images.each do |image|
         .image.4u
           = image_tag image.url.thumb
-          = f.input_field :social_image, type: :radio, id: "image-#{image.id}", name: 'social[image]', value: image.url
+          = f.input_field :social_image_id, type: :radio, id: "image-#{image.id}", name: 'social[image_id]', value: image.id
           %label{for: "image-#{image.id}"} Check to send
     .row.uniform
       %div{class: '12u$'}
