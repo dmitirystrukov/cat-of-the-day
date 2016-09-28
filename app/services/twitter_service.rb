@@ -24,4 +24,12 @@ class TwitterService
   def retweet_count(tweet_id)
     @client.status(tweet_id).retweet_count
   end
+
+  def tweet_status(tweet_id)
+    @client.status("#{tweet_id}1")
+    
+    rescue Twitter::Error::NotFound => error
+      false
+    end
+  end
 end
