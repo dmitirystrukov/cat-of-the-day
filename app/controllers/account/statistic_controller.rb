@@ -2,7 +2,7 @@ class Account::StatisticController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @social_posts = SocialPost.owner_posts(current_user.id)
+    @social_posts = current_user.social_posts.actively
     @statistic = []
 
     @social_posts.each do |post|

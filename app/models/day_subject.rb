@@ -2,7 +2,7 @@ class DaySubject < ActiveRecord::Base
   belongs_to :user
   has_many :day_subject_images, dependent: :destroy
 
-  validates :title, length: { minimum: 10, maximum: 40 }
+  validates :title,       length: { minimum: 10, maximum: 40 }
   validates :description, length: { minimum: 50, maximum: 500 }
 
   accepts_nested_attributes_for :day_subject_images

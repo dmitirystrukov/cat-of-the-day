@@ -15,6 +15,7 @@
 //= require skel
 //= require util
 //= require main
+//= require tabs
 //= require jquery.MultiFile
 
 $(document).ready(function() {

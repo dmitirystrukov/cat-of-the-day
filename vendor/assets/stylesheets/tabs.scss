@@ -1,0 +1,54 @@
+ul.tab {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #6db9e6;
+  li {
+    padding: 0;
+    float: left;
+    a {
+      display: inline-block;
+      cursor: pointer;
+      color: black;
+      text-align: center;
+      padding: 14px 65px;
+      text-decoration: none;
+      transition: 0.3s;
+      font-size: 17px;
+      i {
+        color: #585858;
+        padding: 0 5px;
+      }
+    }
+    a:hover {
+      background-color: #ccc;
+    }
+    a:focus, .active {
+      background-color: #ccc;
+      border-right: 1px solid #cabdbd;
+    }
+  }
+}
+
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  -webkit-animation: fadeEffect 1s;
+  animation: fadeEffect 1s;
+}
+
+.tabcontent.active {
+  display: flex;
+}
+
+@-webkit-keyframes fadeEffect {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeEffect {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

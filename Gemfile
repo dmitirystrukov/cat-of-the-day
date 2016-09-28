@@ -18,6 +18,10 @@ gem 'kaminari'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'sidetiq'
+gem 'sidekiq'
+
+gem 'aasm'
 
 gem 'sass'
 gem 'haml'

@@ -12,7 +12,11 @@ class DaySubjectsController < ApplicationController
   end
 
   def show
-    @day_subject = DaySubject.find(params[:id])
+    @day_subject  = DaySubject.find(params[:id])
+    @social_posts = {
+                      facebook: SocialPost.actively.by_service('FacebookService'),
+                      twitter:  SocialPost.actively.by_service('TwitterService')
+                    }
   end
 
   def new

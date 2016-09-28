@@ -2,4 +2,9 @@
   = @day_subject.title
 %p
   = @day_subject.description
-= render 'images'
+- if signed_in? && current_user.consumer?
+  = render 'images', day_subject: @day_subject
+- else
+  - @day_subject.images.each do |image|
+    = image_tag image.url.thumb
+= render 'social_posts', social_posts: @social_posts

@@ -1,7 +1,6 @@
-- if sign_in? && current_user.consumer?
   = simple_form_for social_path, url: social_path  do |f|
     .image-list.row
-      - @day_subject.images.each do |image|
+      - day_subject.images.each do |image|
         .image.4u
           = image_tag image.url.thumb
           = f.input_field :social_image_id, type: :radio, id: "image-#{image.id}", name: 'social[image_id]', value: image.id
@@ -23,6 +22,3 @@
             = f.submit class: 'special', value: 'Send Images'
           %li
             %input{type: 'reset', value: 'Reset'}
-- else
-  - @day_subject.images.each do |image|
-    = image_tag image.url.thumb
