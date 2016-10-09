@@ -2,7 +2,7 @@ class Account::StatisticController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @social_posts = SocialPost.owner_posts(current_user.id)
+    @social_posts = current_user.social_posts.actively
     @statistic = []
 
     @social_posts.each do |post|
@@ -12,8 +12,7 @@ class Account::StatisticController < ApplicationController
       @statistic << {
         service_name: User::SERVICE_TO_NAME[post.service_name],
         post_id:      post.post_id,
-        likes:        service.favorite_count(post.post_id),
-        reposts:      service.retweet_count(post.post_id)
+        likes:        service.favorite_count(post.post_id)
       }
     end
   end

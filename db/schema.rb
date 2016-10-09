@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20160928062839) do
   create_table "social_posts", force: :cascade do |t|
     t.integer  "user_id",                        null: false
     t.integer  "post_id",              limit: 8, null: false
+    t.string   "message"
     t.integer  "day_subject_image_id",           null: false
     t.integer  "day_subject_id",                 null: false
     t.string   "service_name",                   null: false

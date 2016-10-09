@@ -7,10 +7,8 @@ class TwitterService
   def update_with_image(social_params, user)
     post = @client.update_with_media(social_params[:message], image_path_by_id(social_params[:image_id]))
 
-    user.social_posts.create(post_id: post.id,
-                             day_subject_id: social_params[:day_subject_id],
-                             day_subject_image_id: social_params[:image_id],
-                             service_name: self.class)
+    user.social_posts.create(post_id: post.id, message: social_params[:message], day_subject_id: social_params[:day_subject_id],
+                             day_subject_image_id: social_params[:image_id], service_name: self.class)
   end
 
   def image_path_by_id(image_id)
@@ -21,15 +19,10 @@ class TwitterService
     @client.status(tweet_id).favorite_count
   end
 
-  def retweet_count(tweet_id)
-    @client.status(tweet_id).retweet_count
-  end
+  def entry_status(tweet_id)
+    @client.status(tweet_id)
 
-  def tweet_status(tweet_id)
-    @client.status("#{tweet_id}1")
-    
-    rescue Twitter::Error::NotFound => error
+    rescue Twitter::Error::NotFound
       false
-    end
   end
 end
