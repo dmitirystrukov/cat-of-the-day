@@ -1,0 +1,24 @@
+%header#header
+  .inner
+    / Logo
+    = link_to root_path, class: 'logo' do
+      %span.symbol
+        = image_tag 'logo.png'
+      %span.title Cat of the Day
+    / Nav
+    %nav
+      %ul
+        %li
+          %a{:href => "#menu"} Menu
+/ Menu
+%nav#menu
+  %h2 Menu
+  %ul
+    %li
+      = link_to 'Home', root_path
+      - if signed_in?
+        = link_to 'Statistic', account_statistic_path
+        = link_to 'Logout', destroy_user_session_path
+      - else
+        = link_to 'Sign in', new_user_session_path
+        = link_to 'Sign up', new_user_registration_path
