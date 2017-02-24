@@ -1,0 +1,14 @@
+%h2 My social posts
+%ul.tab
+  - User::SOCIAL_PROVIDERS.each do |provider|
+    %li
+      %a.tablinks{id: provider, class: record_first?(provider, User::SOCIAL_PROVIDERS) ? 'active' : ''}
+        %i{class: "fa fa-#{provider}"}
+        = provider.capitalize
+- User::SOCIAL_PROVIDERS.each do |provider|
+  %section.tiles.tabcontent{id: provider, class: record_first?(provider, User::SOCIAL_PROVIDERS) ? 'active' : '' }
+    - social_posts[provider.to_sym]&.each do |social_post|
+      %article.style2
+        %span.image= image_tag social_post.day_subject_image.url
+        %a
+          %h2=social_post.message

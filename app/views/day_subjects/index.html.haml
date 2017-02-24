@@ -1,0 +1,9 @@
+= render 'actions'
+%section.tiles
+  - @day_subjects.each do |day_subject|
+    %article{class: day_subject_style(day_subject)[:class]}
+      %span.image
+        = image_tag day_subject_style(day_subject)[:image]
+      = link_to day_subject_path(day_subject) do
+        %h2= day_subject.title
+= paginate @day_subjects

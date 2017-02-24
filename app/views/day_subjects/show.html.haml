@@ -1,0 +1,10 @@
+%h1
+  = @day_subject.title
+%p
+  = @day_subject.description
+- if signed_in? && current_user.consumer?
+  = render 'images', day_subject: @day_subject
+  = render 'social_posts', social_posts: @social_posts
+- else
+  - @day_subject.images.each do |image|
+    = image_tag image.url.thumb
