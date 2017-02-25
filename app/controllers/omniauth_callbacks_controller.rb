@@ -29,11 +29,12 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def facebook_attributes(params)
-    { token:      params[:credentials][:token] }
+    { token: params[:credentials][:token] }
   end
 
   def sign_in_with_oauth_data(data)
     user = User.find_or_create_with_oauth(data)
+    
     sign_in :user, user
   end
 end

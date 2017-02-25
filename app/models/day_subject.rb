@@ -1,5 +1,8 @@
 class DaySubject < ActiveRecord::Base
+  attr_accessor :style_class, :style_image
+
   belongs_to :user
+  has_many :social_posts
   has_many :day_subject_images, dependent: :destroy
 
   validates :title,       length: { minimum: 10, maximum: 40 }

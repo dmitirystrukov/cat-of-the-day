@@ -10,7 +10,7 @@ class Ability
   end
 
   def client_abilities(_user)
-    can :manage, :all
+    can :manage, DaySubject
   end
 
   def consumer_abilities(_user)

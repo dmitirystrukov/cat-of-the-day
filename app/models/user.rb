@@ -1,9 +1,10 @@
 class User < ActiveRecord::Base
   include Omniauthable
+  include SocialProvider::ModelHelperMethods
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :omniauthable, omniauth_providers: [:facebook, :twitter]
+         :omniauthable, omniauth_providers: SocialProvider.list
 
   rolify
 
@@ -24,26 +25,6 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
-  end
-
-  def social_profile_exist?(name)
-    social_profiles.where(service_name: name).any?
-  end
-
-  def twitter_profile
-    social_profiles.find_by(service_name: :twitter)
-  end
-
-  def facebook_profile
-    social_profiles.find_by(service_name: :facebook)
-  end
-
-  def twitter_data
-    twitter_profile.data
-  end
-
-  def facebook_data
-    facebook_profile.data
   end
 
   def client?

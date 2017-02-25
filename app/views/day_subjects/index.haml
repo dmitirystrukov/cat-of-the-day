@@ -1,0 +1,7 @@
+= render 'shared/actions'
+
+%section.tiles
+  - @day_subjects.each do |day_subject|
+    = render 'day_subjects/index/list_item', day_subject: day_subject
+
+= paginate @day_subjects

@@ -1,0 +1,5 @@
+.actions
+  = link_to edit_day_subject_path(day_subject) do
+    .fa.fa-pencil-square-o Edit
+  = link_to day_subject_path(day_subject), method: :delete, data: { confirm: 'Are you sure?' } do
+    .fa.fa-trash-o Delete

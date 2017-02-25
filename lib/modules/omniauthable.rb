@@ -3,6 +3,7 @@ module Omniauthable
 
   included do
     attr_accessor :social_login
+    
     def self.find_or_create_with_oauth(oauth_data)
       find_with_oauth(oauth_data) || create_with_oauth(oauth_data)
     end
@@ -23,8 +24,10 @@ module Omniauthable
       else
         user = User.new
       end
+
       user.social_login = true
       user.save!
+
       user
     end
 
@@ -49,6 +52,7 @@ module Omniauthable
 
     def password_required?
       return false if social_login
+
       super
     end
 
