@@ -1,2 +1,8 @@
 en:
-  hello: "Hello world"
+  day_subjects:
+    create:
+      success: "You successfully created day subject"
+    update:
+      success: "You successfully updated day subject"
+    destroy:
+      success: "You successfully deleted day subject"

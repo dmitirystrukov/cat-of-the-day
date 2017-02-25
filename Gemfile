@@ -23,8 +23,10 @@ gem 'sidekiq'
 
 gem 'aasm'
 
+gem 'responders'
 gem 'sass'
-gem 'haml'
+gem 'hamlit'
+gem 'coffee-rails'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'

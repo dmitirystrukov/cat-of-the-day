@@ -1,124 +1,92 @@
 require 'rails_helper'
 
 RSpec.describe DaySubjectsController, type: :controller do
-  let(:user) { create :user }
-
-  before do
-    user.add_role :client
-    sign_in user
-  end
+  let(:consumer) { create :user, :with_role, user_role: :consumer }
+  let(:client)   { create :user, :with_role, user_role: :client }
 
   describe '#index' do
-    let!(:day_subject_1) { create :day_subject }
-    let!(:day_subject_2) { create :day_subject }
-
-    before { subject }
-
     subject { get :index }
 
-    it 'sort order' do
-      expect(assigns(:day_subjects)).to eq [day_subject_1, day_subject_2]
-      expect(subject).to render_template :index
-    end
-  end
-
-  describe '#show' do
-    let(:day_subject) { create :day_subject }
-
-    before { subject }
-
-    subject { get :show, id: day_subject.id }
-
-    it 'verify day subject' do
-      expect(assigns(:day_subject)).to eq day_subject
-      expect(subject).to render_template :show
-    end
+    it { is_expected.to render_template :index }
   end
 
   describe '#new' do
     subject { get :new }
 
-    before { subject }
+    context 'when user has role consumer' do
+      before { sign_in consumer }
 
-    it 'verify day subject' do
-      expect(assigns(:day_subject)).to be_a_new DaySubject
-      expect(subject).to render_template :new
+      it { expect { subject }.to raise_error CanCan::AccessDenied }
+    end
+
+    context 'when user has role client' do
+      before { sign_in client }
+
+      it { is_expected.to render_template :new }
     end
   end
 
   describe '#create' do
-    let(:day_subject) { build :day_subject }
-    let(:params) { { day_subject: attributes_for(:day_subject) } }
+    let(:day_subject) { build :day_subject, user: client }
+    let(:params)      { { day_subject: day_subject.attributes.compact } }
 
-    context 'when uploading multiply images' do
-      let(:image_1) { Rack::Test::UploadedFile.new(File.open('spec/fixtures/pixel.jpg')) }
-      let(:image_2) { Rack::Test::UploadedFile.new(File.open('spec/fixtures/cat.jpg')) }
+    subject { post :create, params }
 
-      let(:params) do
-        {
-          day_subject: {
-            title: day_subject.title,
-            description: day_subject.description,
-            day_subject_images_attributes: { '1' => { url: image_1 }, '2' => { url: image_2 } }
-          }
-        }
-      end
+    context 'when consumer trying to create day subject' do
+      before { sign_in consumer }
 
-      subject { post :create, params }
-
-      specify do
-        expect { subject }.to change { DaySubjectImage.count }.by(2)
-        expect(subject).to redirect_to root_path
+      it 'can not delete day subject' do
+        expect { subject }.to raise_error CanCan::AccessDenied
       end
     end
 
-    context 'when params are valid' do
-      subject { post :create, params }
+    context 'when creating day subject' do
+      before { sign_in client }
 
-      specify do
+      it 'create day subject' do
         expect { subject }.to change { DaySubject.count }.by(1)
-        expect(assigns(:day_subject)).to eq DaySubject.last
-        expect(subject).to redirect_to root_path
-      end
-    end
+         .and change { client.reload.day_subjects.count }.by(1)
 
-    context 'when params are invalid' do
-      let(:invalid_params) do
-        params.tap { |hash| hash[:day_subject].update(title: 'a' * 41) }
-      end
-
-      subject { post :create, invalid_params }
-
-      specify do
-        expect { subject }.to change { DaySubject.count }.by(0)
-        is_expected.to render_template :new
+        expect(flash[:notice]).to eq I18n.t('day_subjects.create.success')
       end
     end
   end
 
   describe '#destroy' do
-    let!(:day_subject_1) { create :day_subject, user: user }
-    let!(:day_subject_2) { create :day_subject }
+    let(:day_subject) { create :day_subject, user: client }
+    let(:params)      { { id: day_subject.id } }
 
     subject { delete :destroy, params }
 
-    context 'when user is owner' do
-      let(:params) { { id: day_subject_1.id } }
+    context 'when consumer deleting day subject' do
+      before { sign_in consumer }
 
-      specify do
-        expect { subject }.to change { DaySubject.count }.by(-1)
-        expect(subject).to redirect_to root_path
+      it 'can not delete day subject' do
+        expect { subject }.to raise_error CanCan::AccessDenied
       end
     end
 
-    context 'when user in not owner' do
-      let(:params) { { id: day_subject_2.id } }
+    context 'when deleting own day subject' do
+      before { sign_in client }
 
-      specify do
-        expect { subject }.to change { DaySubject.count }.by(0)
-        expect(subject).to redirect_to root_path
-        expect(flash[:error]).to eq "You don't have permission"
+      it 'delete day subject' do
+        subject
+
+        expect(client.day_subjects).to eq []
+        expect(flash[:notice]).to eq I18n.t('day_subjects.destroy.success')
       end
     end
+
+    context 'when deleting not own day subject' do
+      let(:another_client) { create :user, :with_role, user_role: :client }
+
+      before { sign_in another_client }
+
+      it 'can not delete day subject' do
+        expect { subject }.to raise_error ActiveRecord::RecordNotFound
+      end
+    end
+
   end
+
 end
