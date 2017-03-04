@@ -4,7 +4,11 @@ module FeatureHelpers
 
     fill_in 'user[email]', with: user.email
     fill_in 'user[password]', with: user.password
-    
+
     click_button('Log in')
+  end
+
+  def submit_form
+    find('input[name="commit"]').click
   end
 end
