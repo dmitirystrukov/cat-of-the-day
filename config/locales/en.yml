@@ -6,3 +6,6 @@ en:
       success: "You successfully updated day subject"
     destroy:
       success: "You successfully deleted day subject"
+  social_posts:
+    create:
+      success: "You post has been successfully created in %{provider}"

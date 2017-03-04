@@ -4,13 +4,17 @@ class DaySubjectsController < ApplicationController
   authorize_resource
   respond_to :html
 
+  before_action :current_namespace, only: :show
+
   def index
     @day_subjects = DaySubject.page(params[:page]).per(PER_PAGE)
   end
 
   def show
     @day_subject  = DaySubject.find(params[:id])
-    @social_posts = SocialProvider.collect_social_posts(@day_subject.social_posts.actively)
+    @social_posts = social_posts
+
+    render "day_subjects/#{current_namespace}/show"
   end
 
   def new
@@ -44,6 +48,19 @@ class DaySubjectsController < ApplicationController
   end
 
   private
+
+  def social_posts
+    case current_namespace.to_sym
+    when :consumer
+      SocialProvider.collect_social_posts(current_user)
+    when :client
+      @day_subject.social_posts.actively
+    end
+  end
+
+  def current_namespace
+    current_user.present? ? current_user.role.name : :guest
+  end
 
   def day_subject_params
     params.require(:day_subject).permit(:user_id, :title, :description, day_subject_images_attributes: [:url])

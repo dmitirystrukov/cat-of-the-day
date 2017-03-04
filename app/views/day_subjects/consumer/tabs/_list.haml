@@ -1,5 +1,5 @@
 %ul.tab
-  - SocialProvider.list.each do |provider_name|
+  - current_user.connected_provider_names.each do |provider_name|
     %li
       %a.tablinks{ id: provider_name, class: tab_active_class(provider_name) }
         %i{class: "fa fa-#{provider_name}"}
