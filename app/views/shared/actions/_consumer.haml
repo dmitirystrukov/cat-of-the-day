@@ -1,6 +1,6 @@
 %ul.icons
-  - SocialProvider.list.each do |provider_name|
-    %li{class: social_active?(provider_name)}
-      = link_to send("user_#{provider_name}_omniauth_authorize_path"), class: "icon style2 fa-#{provider_name}", title: "#{provider_name.capitalize} is #{social_active?(provider_name)}" do
+  - SocialProvider.providers_list.each do |provider_name|
+    %li{ class: provider_active_class(provider_name) }
+      = link_to send("user_#{provider_name}_omniauth_authorize_path"), class: "icon style2 fa-#{provider_name}", title: "#{provider_name.capitalize} is #{provider_active_class(provider_name)}" do
         %span.label
           = provider_name.capitalize

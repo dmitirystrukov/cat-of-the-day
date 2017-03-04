@@ -13,5 +13,3 @@ module Catday
 end
 
 require Rails.root.join 'lib', 'modules', 'omniauthable'
-require Rails.root.join 'lib', 'modules', 'social_provider'
-require Rails.root.join 'lib', 'modules', 'social_provider', 'model_helper_methods'

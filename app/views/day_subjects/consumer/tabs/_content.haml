@@ -1,6 +1,6 @@
-- SocialProvider.list.each do |provider_name|
+- current_user.connected_provider_names.each do |provider_name|
   %section.tiles.tabcontent{ id: provider_name, class: tab_active_class(provider_name) }
-    - social_posts[provider_name.to_sym]&.each do |social_post|
+    - social_posts[provider_name]&.each do |social_post|
       %article.style2
         %span.image
           = image_tag social_post.day_subject_image.url

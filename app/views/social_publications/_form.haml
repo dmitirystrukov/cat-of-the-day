@@ -1,0 +1,19 @@
+= simple_form_for day_subject.social_posts.build, url: social_publications_path, remote: true do |f|
+  .image-list.row
+    - day_subject.images.each do |image|
+      .image.4u
+        = image_tag image.url.thumb
+        = f.input_field :day_subject_image_id, type: :radio, id: "image-#{image.id}", value: image.id
+        %label{for: "image-#{image.id}"} Check to send
+  .row.uniform
+    %div{class: '12u$'}
+      .select-wrapper
+        = f.input_field :service_name, collection: SocialProvider::TYPES, include_blank: false, id: 'demo-category'
+    %div{class: '12u$'}
+      .textarea-wrapper
+        = f.input_field :message, as: :text, placeholder: 'Enter your message', rows: '1'
+    %div{class: '12u$'}
+      %ul.actions
+        %li
+          = f.hidden_field :day_subject_id, value: day_subject.to_param
+          = f.submit value: 'Send Image', class: 'special'
