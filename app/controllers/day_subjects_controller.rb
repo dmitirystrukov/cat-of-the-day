@@ -1,22 +1,16 @@
 class DaySubjectsController < ApplicationController
-  authorize_resource
-
   PER_PAGE = 9
+
+  authorize_resource
+  respond_to :html
 
   def index
     @day_subjects = DaySubject.page(params[:page]).per(PER_PAGE)
   end
 
-  def edit
-    @day_subject = DaySubject.find(params[:id])
-  end
-
   def show
     @day_subject  = DaySubject.find(params[:id])
-    @social_posts = {
-                      facebook: SocialPost.actively.by_service('FacebookService'),
-                      twitter:  SocialPost.actively.by_service('TwitterService')
-                    }
+    @social_posts = SocialProvider.collect_social_posts(@day_subject.social_posts.actively)
   end
 
   def new
@@ -25,25 +19,28 @@ class DaySubjectsController < ApplicationController
   end
 
   def create
-    @day_subject = current_user.day_subjects.build(day_subject_params)
+    @day_subject = current_user.day_subjects.create(day_subject_params)
+    flash[:notice] = I18n.t('day_subjects.create.success') if @day_subject.valid?
 
-    if @day_subject.save
-      redirect_to root_path
-    else
-      render :new
-    end
+    respond_with @day_subject
+  end
+
+  def edit
+    @day_subject = DaySubject.find(params[:id])
+  end
+
+  def update
+    @day_subject = current_user.day_subjects.find(params[:id]).update(day_subject_params)
+    flash[:notice] = I18n.t('day_subjects.update.success') if @day_subject.valid?
+
+    respond_with @day_subject
   end
 
   def destroy
-    @day_subject = DaySubject.find(params[:id])
+    @day_subject = current_user.day_subjects.find(params[:id]).destroy
+    flash[:notice] = I18n.t('day_subjects.destroy.success')
 
-    if @day_subject.owner?(current_user)
-      @day_subject.destroy
-
-      redirect_to root_path
-    else
-      redirect_to root_path, flash: { error: "You don't have permission" }
-    end
+    respond_with @day_subject
   end
 
   private

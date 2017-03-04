@@ -1,0 +1,6 @@
+%article{ class: styles(day_subject)[:class] }
+  %span.image
+    = image_tag styles(day_subject)[:image]
+  = link_to day_subject_path(day_subject) do
+    %h2
+      = day_subject.title
