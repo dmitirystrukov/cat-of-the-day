@@ -1,0 +1,5 @@
+- if user_signed_in?
+  - if current_user.consumer?
+    = render 'shared/actions/consumer'
+  - if current_user.client?
+    = render 'shared/actions/client'

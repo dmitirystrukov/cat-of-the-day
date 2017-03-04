@@ -16,26 +16,6 @@
 //= require util
 //= require main
 //= require jquery.MultiFile
-
-$(document).ready(function() {
-  const ALERT_DEFAULT_DELAY = 5000;
-
-  setTimeout(function(){
-    $('.alert').hide('slow');
-  }, ALERT_DEFAULT_DELAY);
-
-  $('.images-uploader').MultiFile({
-    max: 10,
-    accept: 'gif|jpg|png'
-  });
-
-  var $tabLink    = $('.tablinks'),
-      $tabContent = $('.tabcontent');
-
-  $tabLink.click(function() {
-    var tabId = $(this).attr('id');
-
-    $tabLink.toggleClass('active');
-    $tabContent.toggleClass('active');
-  });
-});
+//= require alerts
+//= require tabs
+//= require image-uploaders
