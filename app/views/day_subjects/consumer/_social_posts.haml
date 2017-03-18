@@ -1,0 +1,4 @@
+- if current_user.connected_provider_names.present?
+  %h2 My social posts
+  = render 'day_subjects/consumer/tabs/list'
+  = render 'day_subjects/consumer/tabs/content', social_posts: @social_posts
