@@ -11,6 +11,11 @@ class SocialProvider
     'FacebookPost' => Providers::Facebook
   }
 
+  USER_DATA_TYPES = {
+    'TwitterPost'  => -> (user) { user.twitter_post_data },
+    'FacebookPost' => -> (user) { user.facebook_post_data }
+  }
+
   attr_reader :provider_type, :data
 
   def initialize(data, provider_type)
@@ -29,7 +34,7 @@ class SocialProvider
 
       user.connected_provider_names.each do |provider_name|
         provider_klass = TYPES[provider_name.capitalize.to_sym].constantize
-        social_posts[provider_name] = user.public_send(provider_klass.model_name.plural).where(day_subject_id: day_subject_id)
+        social_posts[provider_name] = user.public_send(provider_klass.model_name.plural).where(day_subject_id: day_subject_id).actively
       end
 
       social_posts
