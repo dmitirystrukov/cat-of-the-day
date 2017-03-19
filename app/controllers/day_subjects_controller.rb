@@ -14,7 +14,7 @@ class DaySubjectsController < ApplicationController
     @day_subject  = DaySubject.find(params[:id])
     @social_posts = social_posts
 
-    render "day_subjects/#{current_namespace}/show"
+    render "day_subjects/show/#{current_namespace}/show"
   end
 
   def new
@@ -52,9 +52,9 @@ class DaySubjectsController < ApplicationController
   def social_posts
     case current_namespace.to_sym
     when :consumer
-      SocialProvider.collect_social_posts(current_user, @day_subject.to_param)
+      SocialProvider.collect_consumer_social_posts(current_user, @day_subject.to_param)
     when :client
-      @day_subject.social_posts.actively
+      SocialProvider.collect_client_social_posts(@day_subject)
     end
   end
 
