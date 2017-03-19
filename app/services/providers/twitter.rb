@@ -6,20 +6,18 @@ module Providers
       @client ||= ::Twitter::REST::Client.new(data)
     end
 
-    def client
-      @client
-    end
+    attr_reader :client
 
-    def update_with_image(social_params, user)
+    def update_with_image(social_params)
       @client.update_with_media(social_params[:message], image_file(social_params[:day_subject_image_id]))
     end
 
-    def post_exists?(id, options = {})
+    def post_exists?(id, options={})
       @client.status(id, options)
       true
 
-      rescue ::Twitter::Error::NotFound
-        false
+    rescue ::Twitter::Error::NotFound
+      false
     end
   end
 end
