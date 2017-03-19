@@ -1,15 +1,4 @@
 module ApplicationHelper
-  def day_subject_show_path(day_subject)
-    # return guest_day_subject_path(day_subject) if current_user.blank?
-
-    # case current_user.role.name.to_sym
-    # when :client
-    #   client_day_subject_path(day_subject)
-    # when :consumer
-      consumer_day_subject_path(day_subject)
-    # end
-  end
-
   def provider_active_class(provider_name)
     provider_active?(provider_name) ? 'active' : ''
   end
