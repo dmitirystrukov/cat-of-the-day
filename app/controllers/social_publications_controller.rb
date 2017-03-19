@@ -5,15 +5,13 @@ class SocialPublicationsController < ApplicationController
   def create
     @social_post = current_user.public_send(provider_collection_name).new(social_post_params)
 
-    # if @social_post.valid?
-    #   provider = SocialProvider.new(data, social_post_params[:service_name])
-    #   post = provider.client.update_with_image(social_post_params, current_user)
-    #
-    #   @social_post.post_id = post_id(post, @social_post.service_name)
-    #   @social_post.save
-    # end
+    if @social_post.valid?
+      provider = SocialProvider.new(data, social_post_params[:service_name])
+      post = provider.client.update_with_image(social_post_params, current_user)
 
-    sleep 10
+      @social_post.post_id = post_id(post, @social_post.service_name)
+      @social_post.save
+    end
 
     respond_with @social_post
   end

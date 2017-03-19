@@ -6,6 +6,7 @@
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
   %body
+    = render 'shared/loader'
     = render 'shared/flash'
     #wrapper
       = render 'layouts/header'
