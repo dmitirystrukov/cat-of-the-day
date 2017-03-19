@@ -5,10 +5,10 @@ module DaySubjectHelper
 
   private
     def owner_styles
-      { class: 'style8', image: 'pic10.jpg' }
+      { class: 'style8', image: 'owner_block.jpg' }
     end
 
     def viewer_styles
-      { class: 'style2', image: 'pic02.jpg' }
+      { class: 'style2', image: 'viewer_block.jpg' }
     end
 end

@@ -29,12 +29,23 @@ class SocialProvider
   end
 
   class << self
-    def collect_social_posts(user, day_subject_id)
+    def collect_consumer_social_posts(user, day_subject_id)
       social_posts = Hash.new
 
       user.connected_provider_names.each do |provider_name|
         provider_klass = TYPES[provider_name.capitalize.to_sym].constantize
         social_posts[provider_name] = user.public_send(provider_klass.model_name.plural).where(day_subject_id: day_subject_id).actively
+      end
+
+      social_posts
+    end
+
+    def collect_client_social_posts(day_subject)
+      social_posts = Hash.new
+
+      day_subject.connected_provider_names.each do |provider_name|
+        provider_klass = TYPES[provider_name.capitalize.to_sym].constantize
+        social_posts[provider_name] = day_subject.public_send(provider_klass.model_name.plural).actively
       end
 
       social_posts

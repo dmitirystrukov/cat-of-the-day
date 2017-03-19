@@ -1,9 +1,0 @@
-.header
-  %h1
-    = @day_subject.title
-  - if @day_subject.owner?(current_user)
-    = render 'day_subjects/show/actions', day_subject: @day_subject
-%p
-  = @day_subject.description
-- @day_subject.images.each do |image|
-  = image_tag image.url.thumb

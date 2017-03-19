@@ -1,0 +1,14 @@
+.header
+  %h1
+    = @day_subject.title
+  - if @day_subject.owner?(current_user)
+    = render 'day_subjects/show/actions', day_subject: @day_subject
+%p
+  = @day_subject.description
+
+- @day_subject.images.each do |image|
+  = image_tag image.url.thumb
+
+  %h2 Users social posts
+  = render 'day_subjects/show/client/tabs/list',    provider_names: @day_subject.connected_provider_names
+  = render 'day_subjects/show/client/tabs/content', provider_names: @day_subject.connected_provider_names, social_posts: @social_posts
