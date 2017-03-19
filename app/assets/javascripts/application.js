@@ -18,4 +18,5 @@
 //= require jquery.MultiFile
 //= require alerts
 //= require tabs
+//= require loader
 //= require image-uploaders
