@@ -2,19 +2,19 @@ class SocialProvider
   @@provider_service_ending = :Service
 
   TYPES = {
-    :Twitter  => ::TwitterPost.to_s,
-    :Facebook => ::FacebookPost.to_s
-  }
+    Twitter: ::TwitterPost.to_s,
+    Facebook: ::FacebookPost.to_s
+  }.freeze
 
   PROVIDER_TYPES = {
     'TwitterPost'  => Providers::Twitter,
     'FacebookPost' => Providers::Facebook
-  }
+  }.freeze
 
   USER_DATA_TYPES = {
-    'TwitterPost'  => -> (user) { user.twitter_post_data },
-    'FacebookPost' => -> (user) { user.facebook_post_data }
-  }
+    'TwitterPost'  => ->(user) { user.twitter_post_data },
+    'FacebookPost' => ->(user) { user.facebook_post_data }
+  }.freeze
 
   attr_reader :provider_type, :data
 
@@ -30,7 +30,7 @@ class SocialProvider
 
   class << self
     def collect_consumer_social_posts(user, day_subject_id)
-      social_posts = Hash.new
+      social_posts = {}
 
       user.connected_provider_names.each do |provider_name|
         provider_klass = TYPES[provider_name.capitalize.to_sym].constantize
@@ -41,7 +41,7 @@ class SocialProvider
     end
 
     def collect_client_social_posts(day_subject)
-      social_posts = Hash.new
+      social_posts = {}
 
       day_subject.connected_provider_names.each do |provider_name|
         provider_klass = TYPES[provider_name.capitalize.to_sym].constantize
