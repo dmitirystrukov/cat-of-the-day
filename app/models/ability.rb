@@ -20,12 +20,11 @@ class Ability
     elsif user.has_role?(:consumer)
       grant_consumer_rights
     end
-
   end
 
   def grant_client_rights
     can [:read, :create], DaySubject
-    can [:edit, :destroy], DaySubject if day_subject.present? && day_subject.owner?(user)
+    can [:update, :destroy], DaySubject if day_subject.present? && day_subject.owner?(user)
   end
 
   def grant_consumer_rights

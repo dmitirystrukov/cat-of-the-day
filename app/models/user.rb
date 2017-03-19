@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   has_one :profile
   has_one :users_role
-  has_one :role, through: :users_role #, foreign_key: :resource_id
+  has_one :role, through: :users_role
 
   has_many :day_subjects
 
