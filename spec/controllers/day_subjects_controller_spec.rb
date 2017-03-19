@@ -45,7 +45,7 @@ RSpec.describe DaySubjectsController, type: :controller do
 
       it 'create day subject' do
         expect { subject }.to change { DaySubject.count }.by(1)
-         .and change { client.reload.day_subjects.count }.by(1)
+          .and change { client.reload.day_subjects.count }.by(1)
 
         expect(flash[:notice]).to eq I18n.t('day_subjects.create.success')
       end
