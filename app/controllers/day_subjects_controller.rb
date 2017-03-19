@@ -52,7 +52,7 @@ class DaySubjectsController < ApplicationController
   def social_posts
     case current_namespace.to_sym
     when :consumer
-      SocialProvider.collect_social_posts(current_user)
+      SocialProvider.collect_social_posts(current_user, @day_subject.to_param)
     when :client
       @day_subject.social_posts.actively
     end
