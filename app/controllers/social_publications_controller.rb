@@ -7,7 +7,7 @@ class SocialPublicationsController < ApplicationController
 
     if @social_post.valid?
       provider = SocialProvider.new(data, social_post_params[:service_name])
-      post = provider.client.update_with_image(social_post_params, current_user)
+      post = provider.client.update_with_image(social_post_params)
 
       @social_post.post_id = post_id(post, @social_post.service_name)
       @social_post.save
@@ -24,8 +24,8 @@ class SocialPublicationsController < ApplicationController
 
   def post_id(post, type)
     providers = {
-      'FacebookPost' => -> (post) { post['post_id'] },
-      'TwitterPost'  => -> (post) { post.id }
+      'FacebookPost' => ->(post) { post['post_id'] },
+      'TwitterPost'  => ->(post) { post.id }
     }
 
     providers[type].call(post)
@@ -52,6 +52,6 @@ class SocialPublicationsController < ApplicationController
   end
 
   def social_post_params
-    params.require(:social_post ).permit(:message, :service_name, :day_subject_id, :day_subject_image_id)
+    params.require(:social_post).permit(:message, :service_name, :day_subject_id, :day_subject_image_id)
   end
 end
