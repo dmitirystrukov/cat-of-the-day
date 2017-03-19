@@ -49,8 +49,16 @@ class User < ActiveRecord::Base
     social_profiles.find_by(service_name: :twitter)
   end
 
+  def facebook_profile
+    social_profiles.find_by(service_name: :facebook)
+  end
+
   def twitter_post_data
     twitter_profile.try(:data)
+  end
+
+  def facebook_post_data
+    facebook_profile.try(:data)
   end
 
   def social_profile_exist?(name)

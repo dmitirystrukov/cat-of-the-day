@@ -11,10 +11,7 @@ module Providers
     end
 
     def update_with_image(social_params, user)
-      message = social_params[:message]
-      image_file = image_file(social_params[:day_subject_image_id])
-
-      @client.update_with_media(message, image_file)
+      @client.update_with_media(social_params[:message], image_file(social_params[:day_subject_image_id]))
     end
   end
 end

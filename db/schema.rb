@@ -52,14 +52,14 @@ ActiveRecord::Schema.define(version: 20160928062839) do
   add_index "roles", ["name"], name: "index_roles_on_name", using: :btree
 
   create_table "social_posts", force: :cascade do |t|
-    t.integer  "user_id",                        null: false
-    t.integer  "post_id",              limit: 8, null: false
+    t.integer  "user_id",              null: false
+    t.string   "post_id",              null: false
     t.string   "message"
-    t.integer  "day_subject_image_id",           null: false
-    t.integer  "day_subject_id",                 null: false
-    t.string   "service_name",                   null: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.integer  "day_subject_image_id", null: false
+    t.integer  "day_subject_id",       null: false
+    t.string   "service_name",         null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.string   "status"
   end
 

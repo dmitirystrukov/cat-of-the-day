@@ -6,10 +6,10 @@ class SocialPublicationsController < ApplicationController
     @social_post = current_user.public_send(provider_collection_name).new(social_post_params)
 
     if @social_post.valid?
-      social_provider = SocialProvider.new(data, social_post_params[:service_name])
-      social_post = social_provider.client.update_with_image(social_post_params, current_user)
+      provider = SocialProvider.new(data, social_post_params[:service_name])
+      post = provider.client.update_with_image(social_post_params, current_user)
 
-      @social_post.post_id = social_post.id
+      @social_post.post_id = post_id(post, @social_post.service_name)
       @social_post.save
     end
 
@@ -20,6 +20,15 @@ class SocialPublicationsController < ApplicationController
 
   def provider_collection_name
     social_post_params[:service_name].classify.constantize.model_name.plural
+  end
+
+  def post_id(post, type)
+    providers = {
+      'FacebookPost' => -> (post) { post['post_id'] },
+      'TwitterPost'  => -> (post) { post.id }
+    }
+
+    providers[type].call(post)
   end
 
   def day_subject
