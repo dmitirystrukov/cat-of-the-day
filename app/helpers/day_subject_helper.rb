@@ -4,11 +4,12 @@ module DaySubjectHelper
   end
 
   private
-    def owner_styles
-      { class: 'style8', image: 'owner_block.jpg' }
-    end
 
-    def viewer_styles
-      { class: 'style2', image: 'viewer_block.jpg' }
-    end
+  def owner_styles
+    { class: 'style8', image: 'owner_block.jpg' }
+  end
+
+  def viewer_styles
+    { class: 'style2', image: 'viewer_block.jpg' }
+  end
 end
