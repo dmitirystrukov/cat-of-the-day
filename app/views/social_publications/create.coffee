@@ -4,6 +4,8 @@
   $('body').animate { scrollTop: 0 }, 'slow'
   $('body').prepend(flashMessage)
 
+  $('section.tabcontent').append('<%= j render "day_subjects/consumer/tabs/item", social_post: @social_post %>')
+
   Alert.hide()
 <% else %>
   errorMessages = JSON.parse('<%= raw @social_post.errors.to_hash.to_json %>')

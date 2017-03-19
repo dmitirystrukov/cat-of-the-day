@@ -1,9 +1,4 @@
 - current_user.connected_provider_names.each do |provider_name|
   %section.tiles.tabcontent{ id: provider_name, class: tab_active_class(provider_name) }
     - social_posts[provider_name]&.each do |social_post|
-      %article.style2
-        %span.image
-          = image_tag social_post.day_subject_image.url
-        %a
-          %h2
-            = social_post.message
+      = render 'day_subjects/consumer/tabs/item', social_post: social_post
