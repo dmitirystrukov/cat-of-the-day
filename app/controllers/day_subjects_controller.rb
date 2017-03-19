@@ -49,6 +49,14 @@ class DaySubjectsController < ApplicationController
 
   private
 
+  def current_ability
+    Ability.new(current_user, day_subject)
+  end
+
+  def day_subject
+    @day_subject ||= DaySubject.find_by_id(params[:id])
+  end
+
   def social_posts
     case current_namespace.to_sym
     when :consumer

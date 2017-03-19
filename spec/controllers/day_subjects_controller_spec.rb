@@ -83,10 +83,8 @@ RSpec.describe DaySubjectsController, type: :controller do
       before { sign_in another_client }
 
       it 'can not delete day subject' do
-        expect { subject }.to raise_error ActiveRecord::RecordNotFound
+        expect { subject }.to raise_error CanCan::AccessDenied
       end
     end
-
   end
-
 end
