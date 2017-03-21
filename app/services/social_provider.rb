@@ -1,5 +1,5 @@
 class SocialProvider
-  @@provider_service_ending = :Service
+  PROVIDER_SERVICE_ENDING = :Service
 
   TYPES = {
     Twitter:  ::TwitterPost.to_s,
@@ -49,10 +49,6 @@ class SocialProvider
       end
 
       social_posts
-    end
-
-    def provider_to_service_name(name)
-      "#{name.capitalize}#{@@provider_service_ending}"
     end
 
     def providers_list
