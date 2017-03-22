@@ -1,15 +1,19 @@
 class SocialPublicationsController < ApplicationController
+  include ProviderTool
+
   respond_to :js
   layout false
+
+  before_action :proccess_validation!
 
   def create
     @social_post = current_user.public_send(provider_collection_name).new(social_post_params)
 
     if @social_post.valid?
-      provider = SocialProvider.new(data, social_post_params[:service_name])
+      provider = SocialProvider.new(profile_data, social_post_params[:service_name])
       post = provider.client.update_with_image(social_post_params)
 
-      @social_post.post_id = post_id(post, @social_post.service_name)
+      @social_post.post_id = get_post_id(post)
       @social_post.save
     end
 
@@ -18,37 +22,24 @@ class SocialPublicationsController < ApplicationController
 
   private
 
-  def provider_collection_name
-    social_post_params[:service_name].classify.constantize.model_name.plural
-  end
-
-  def post_id(post, type)
-    providers = {
-      'FacebookPost' => ->(post) { post['post_id'] },
-      'TwitterPost'  => ->(post) { post.id }
-    }
-
-    providers[type].call(post)
-  end
-
   def day_subject
     @day_subject ||= DaySubject.find(social_post_params[:day_subject_id])
   end
 
-  def data
-    current_user.public_send("#{@social_post.service_name.underscore}_data")
+  def proccess_validation!
+    validate_profile_data
+    validate_provider_type
+
+    rescue ProviderValidationError
+      redirect_to day_subject_path(@day_subject), flash: { error: 'Provider validation error' }
   end
 
-  def verify_permission!
-    # return unless service_plugged?(social_params[:service])
-    #
-    # redirect_to day_subject_path(social_params[:day_subject_id]), flash: { error: 'You not choose service or not plugged it ' }
+  def validate_profile_data
+    raise ProviderValidationError if profile_data.nil?
   end
 
-  def service_plugged?(service_name)
-    # return if service_name.empty?
-    #
-    # current_user.send("#{User::SERVICE_TO_NAME[service_name]}_profile").nil?
+  def validate_provider_type
+    raise ProviderValidationError if SocialProvider::PROVIDER_TYPES[provider_type].nil?
   end
 
   def social_post_params

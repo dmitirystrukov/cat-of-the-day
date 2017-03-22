@@ -7,22 +7,6 @@ RSpec.describe SocialProvider, type: :service do
 
     subject { instance.client }
 
-    # TODO: Should be handled
-    context 'when social profile data nil', pending: true do
-      let(:social_profile) { build :social_profile }
-      let(:provider_type)  { 'FacebookPost' }
-
-      it { subject }
-    end
-
-    # TODO: Should be handled
-    context 'when wrong provider', pending: true do
-      let(:social_profile) { build :social_profile, :facebook }
-      let(:provider_type)  { 'SomeWrongProvider' }
-
-      it { subject }
-    end
-
     context 'when facebook provider' do
       let(:social_profile) { build :social_profile, :facebook }
       let(:provider_type)  { 'FacebookPost' }
