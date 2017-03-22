@@ -1,0 +1,1 @@
+class ProviderValidationError < StandardError; end
