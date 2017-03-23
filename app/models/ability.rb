@@ -29,6 +29,7 @@ class Ability
 
   def grant_consumer_rights
     can :read, :all
+    can :create, SocialPost
   end
 
   def guest_abilities
