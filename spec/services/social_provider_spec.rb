@@ -39,14 +39,20 @@ RSpec.describe SocialProvider, type: :service do
     let(:day_subject_image) { create :day_subject_image, day_subject: day_subject }
     let!(:social_profile)   { create :social_profile, :twitter, user: user, service_name: :twitter }
 
-    let(:inactive_social_post) { create :social_post, user: user, day_subject_id: day_subject.to_param, status: :inactive,
-                                                  service_name: 'TwitterPost', day_subject_image_id: day_subject_image.to_param }
+    let(:inactive_social_post) do
+      create :social_post, user: user, day_subject_id: day_subject.to_param, status: :inactive,
+                           service_name: 'TwitterPost', day_subject_image_id: day_subject_image.to_param
+    end
 
-    let(:facebook_social_post) { create :social_post, user: user, day_subject_id: day_subject.to_param, status: :active,
-                                                  service_name: 'FacebookPost', day_subject_image_id: day_subject_image.to_param }
+    let(:facebook_social_post) do
+      create :social_post, user: user, day_subject_id: day_subject.to_param, status: :active,
+                           service_name: 'FacebookPost', day_subject_image_id: day_subject_image.to_param
+    end
 
-    let!(:social_posts)        { create_list :social_post, 5, user: user, day_subject_id: day_subject.to_param,
-                                                   service_name: 'TwitterPost', day_subject_image_id: day_subject_image.to_param }
+    let!(:social_posts) do
+      create_list :social_post, 5, user: user, day_subject_id: day_subject.to_param,
+                                   service_name: 'TwitterPost', day_subject_image_id: day_subject_image.to_param
+    end
 
     subject { described_class.collect_consumer_social_posts(user, day_subject.to_param) }
 
@@ -64,14 +70,20 @@ RSpec.describe SocialProvider, type: :service do
     let(:day_subject_image) { create :day_subject_image, day_subject: day_subject }
     let!(:social_profile)   { create :social_profile, :twitter, user_id: user_id, service_name: :twitter }
 
-    let(:inactive_social_post) { create :social_post, user_id: user_id, day_subject_id: day_subject.to_param, status: :inactive,
-                                                  service_name: 'TwitterPost', day_subject_image_id: day_subject_image.to_param }
+    let(:inactive_social_post) do
+      create :social_post, user_id: user_id, day_subject_id: day_subject.to_param, status: :inactive,
+                           service_name: 'TwitterPost', day_subject_image_id: day_subject_image.to_param
+    end
 
-    let(:facebook_social_post) { create :social_post, user_id: user_id, day_subject_id: day_subject.to_param, status: :active,
-                                                  service_name: 'FacebookPost', day_subject_image_id: day_subject_image.to_param }
+    let(:facebook_social_post) do
+      create :social_post, user_id: user_id, day_subject_id: day_subject.to_param, status: :active,
+                           service_name: 'FacebookPost', day_subject_image_id: day_subject_image.to_param
+    end
 
-    let!(:social_posts)        { create_list :social_post, 5, user_id: user_id, day_subject_id: day_subject.to_param,
-                                                   service_name: 'TwitterPost', day_subject_image_id: day_subject_image.to_param }
+    let!(:social_posts) do
+      create_list :social_post, 5, user_id: user_id, day_subject_id: day_subject.to_param,
+                                   service_name: 'TwitterPost', day_subject_image_id: day_subject_image.to_param
+    end
 
     subject { described_class.collect_client_social_posts(day_subject) }
 

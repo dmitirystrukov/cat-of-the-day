@@ -31,8 +31,8 @@ class SocialPublicationsController < ApplicationController
     validate_provider_type
     validate_image_exists
 
-    rescue ProviderValidationError
-      redirect_to day_subject_path(day_subject), flash: { error: 'Provider validation error' }
+  rescue ProviderValidationError
+    redirect_to day_subject_path(day_subject), flash: { error: 'Provider validation error' }
   end
 
   def validate_profile_data
