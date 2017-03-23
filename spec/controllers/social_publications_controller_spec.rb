@@ -45,8 +45,10 @@ RSpec.describe SocialPublicationsController, type: :controller do
 
     context 'when successfully created social post' do
       let(:day_subject_image) { create :day_subject_image, day_subject: day_subject }
-      let(:params) { { social_post: { day_subject_id: day_subject.to_param, day_subject_image_id: day_subject_image.to_param,
-                                                              service_name: service_name, message: 'Hello' }, format: :js } }
+      let(:params) do
+        { social_post: { day_subject_id: day_subject.to_param, day_subject_image_id: day_subject_image.to_param,
+                         service_name: service_name, message: 'Hello' }, format: :js }
+      end
 
       context 'when twitter provider' do
         let!(:social_profile) { create :social_profile, :twitter, user: user }
@@ -57,7 +59,7 @@ RSpec.describe SocialPublicationsController, type: :controller do
 
         before do
           allow(Twitter::REST::Client).to receive(:new).and_return(twitter_client)
-          allow(twitter_client).to receive(:update_with_media).and_return(::Twitter::Tweet.new({ id: 111111 }))
+          allow(twitter_client).to receive(:update_with_media).and_return(::Twitter::Tweet.new(id: 111_111))
         end
 
         it 'create twitter post' do
@@ -80,7 +82,7 @@ RSpec.describe SocialPublicationsController, type: :controller do
 
         before do
           allow(Koala::Facebook::API).to receive(:new).and_return(facebook_client)
-          allow(facebook_client).to receive(:put_picture).and_return({ 'post_id' => 111111 })
+          allow(facebook_client).to receive(:put_picture).and_return('post_id' => 111_111)
         end
 
         it 'create facebook post' do
