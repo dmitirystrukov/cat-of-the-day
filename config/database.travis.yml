@@ -1,13 +1,13 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV['DB_NAME'] %>_development
+  database: catday_development
   host: localhost
   pool: 5
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: <%= ENV['DB_NAME'] %>_test
+  database: catday_test
   host: localhost
   pool: 5
