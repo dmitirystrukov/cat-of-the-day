@@ -21,11 +21,11 @@ class DaySubject < ActiveRecord::Base
     end
   end
 
-  def images
-    day_subject_images
-  end
-
   def owner?(user)
     user_id == user&.id
+  end
+
+  def images
+    day_subject_images
   end
 end
