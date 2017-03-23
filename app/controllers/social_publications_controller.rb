@@ -12,7 +12,7 @@ class SocialPublicationsController < ApplicationController
     if @social_post.valid?
       provider = SocialProvider.new(profile_data, social_post_params[:service_name])
       post = provider.client.update_with_image(social_post_params)
-      
+
       @social_post.post_id = get_post_id(post)
       @social_post.save
     end

@@ -43,30 +43,55 @@ RSpec.describe SocialPublicationsController, type: :controller do
       end
     end
 
-    # TODO: Finish it
-    context 'when successfully created social post', pending: true do
+    context 'when successfully created social post' do
       let(:day_subject_image) { create :day_subject_image, day_subject: day_subject }
-      let!(:social_profile)   { create :social_profile, :twitter, user: user }
+      let(:params) { { social_post: { day_subject_id: day_subject.to_param, day_subject_image_id: day_subject_image.to_param,
+                                                              service_name: service_name, message: 'Hello' }, format: :js } }
 
-      let(:service_name) { 'TwitterPost' }
-      let(:params)       { { social_post: { day_subject_id: day_subject.to_param, day_subject_image_id: day_subject_image.to_param,
-                                                                    service_name: service_name, message: 'Hello', format: :js } } }
-      let(:twitter_client) { double }
-      let(:twitter_post)   { TwitterPost.first }
+      context 'when twitter provider' do
+        let!(:social_profile) { create :social_profile, :twitter, user: user }
+        let(:service_name)    { 'TwitterPost' }
 
-      before do
-        allow(Twitter::REST::Client).to receive(:new).and_return(twitter_client)
-        allow(twitter_client).to receive(:update_with_media).and_return(::Twitter::Tweet.new({ id: 111111 }))
+        let(:twitter_client) { double }
+        let(:twitter_post)   { TwitterPost.first }
+
+        before do
+          allow(Twitter::REST::Client).to receive(:new).and_return(twitter_client)
+          allow(twitter_client).to receive(:update_with_media).and_return(::Twitter::Tweet.new({ id: 111111 }))
+        end
+
+        it 'create twitter post' do
+          expect { subject }.to change { TwitterPost.count }.by(1)
+            .and change { user.reload.twitter_posts.count }.by(1)
+
+          expect(twitter_post.post_id).to eq '111111'
+          expect(twitter_post.message).to eq 'Hello'
+          expect(twitter_post.day_subject_id).to eq day_subject.id
+          expect(twitter_post.day_subject_image).to eq day_subject_image
+        end
       end
 
-      it 'create social post' do
-        # expect { subject }.to change { TwitterPost.count }.by(1)
-        # subject
+      context 'when facebook provider' do
+        let!(:social_profile) { create :social_profile, :facebook, user: user }
+        let(:service_name) { 'FacebookPost' }
 
-        # expect(twitter_post.post_id).to eq 111111
-        # expect(twitter_post.message).to eq 'Hello'
-        # expect(twitter_post.day_subject).to eq day_subject
-        # expect(twitter_post.day_subject_image).to eq day_subject_image
+        let(:facebook_client) { double }
+        let(:facebook_post) { FacebookPost.first }
+
+        before do
+          allow(Koala::Facebook::API).to receive(:new).and_return(facebook_client)
+          allow(facebook_client).to receive(:put_picture).and_return({ 'post_id' => 111111 })
+        end
+
+        it 'create facebook post' do
+          expect { subject }.to change { FacebookPost.count }.by(1)
+            .and change { user.reload.facebook_posts.count }.by(1)
+
+          expect(facebook_post.post_id).to eq '111111'
+          expect(facebook_post.message).to eq 'Hello'
+          expect(facebook_post.day_subject_id).to eq day_subject.id
+          expect(facebook_post.day_subject_image).to eq day_subject_image
+        end
       end
     end
   end
