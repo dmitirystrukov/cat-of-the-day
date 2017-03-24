@@ -4,7 +4,7 @@
   $('body').animate { scrollTop: 0 }, 'slow'
   $('body').prepend(flashMessage)
 
-  $('section.tabcontent').append('<%= j render "day_subjects/consumer/tabs/item", social_post: @social_post %>')
+  $('section.tabcontent').append('<%= j render "day_subjects/show/consumer/tabs/item", social_post: @social_post %>')
 
   Alert.hide()
 <% else %>
