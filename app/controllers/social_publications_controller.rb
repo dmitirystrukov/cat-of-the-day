@@ -14,6 +14,8 @@ class SocialPublicationsController < ApplicationController
       post = provider.client.update_with_image(social_post_params)
 
       @social_post.post_id = get_post_id(post)
+      @social_post.url = provider.client.url(@social_post.post_id)
+
       @social_post.save
     end
 

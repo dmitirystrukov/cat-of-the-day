@@ -19,5 +19,9 @@ module Providers
     rescue ::Twitter::Error::NotFound
       false
     end
+
+    def url(post_id)
+      @client.status(post_id).url.to_s
+    end
   end
 end

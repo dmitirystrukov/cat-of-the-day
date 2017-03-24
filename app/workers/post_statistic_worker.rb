@@ -5,7 +5,7 @@ class PostStatisticWorker
   recurrence { minutely(1) }
 
   def perform
-    SocialPost.actively.by_service('TwitterPost').each do |social_post|
+    SocialPost.actively.each do |social_post|
       user_data = SocialProvider::USER_DATA_TYPES[social_post.service_name].call(social_post.user)
       provider =  SocialProvider::PROVIDER_TYPES[social_post.service_name].new(user_data)
 
