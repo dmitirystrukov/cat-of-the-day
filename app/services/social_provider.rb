@@ -29,23 +29,16 @@ class SocialProvider
   end
 
   class << self
-    def collect_consumer_social_posts(user, day_subject_id)
+    def collect_social_posts(model, day_subject_id = nil)
       social_posts = {}
 
-      user.connected_provider_names.each do |provider_name|
+      model.connected_provider_names.each do |provider_name|
         provider_klass = TYPES[provider_name.capitalize.to_sym].constantize
-        social_posts[provider_name] = user.public_send(provider_klass.model_name.plural).where(day_subject_id: day_subject_id).actively
-      end
 
-      social_posts
-    end
+        social_posts[provider_name] = model.public_send(provider_klass.model_name.plural)
+        social_posts[provider_name] = social_posts[provider_name].where(day_subject_id: day_subject_id) if day_subject_id.present?
 
-    def collect_client_social_posts(day_subject)
-      social_posts = {}
-
-      day_subject.connected_provider_names.each do |provider_name|
-        provider_klass = TYPES[provider_name.capitalize.to_sym].constantize
-        social_posts[provider_name] = day_subject.public_send(provider_klass.model_name.plural).actively
+        social_posts[provider_name] = social_posts[provider_name].actively
       end
 
       social_posts
