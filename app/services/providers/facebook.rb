@@ -8,17 +8,16 @@ module Providers
       @client.put_picture(image_file(social_params[:day_subject_image_id]), message: social_params[:message])
     end
 
-    def post_exists?(id, options={})
-      @client.get_object(id)
+    def post_exists?(post_id, options={})
+      @client.get_object(post_id)
       true
 
       rescue Koala::Facebook::ClientError
         false
     end
 
-    # TODO Need to implement
     def url(post_id)
-      'hardcoded'
+      @client.get_object(post_id, fields: 'permalink_url')['permalink_url']
     end
   end
 end

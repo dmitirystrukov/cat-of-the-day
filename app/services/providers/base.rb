@@ -1,8 +1,6 @@
 module Providers
   class Base
-    def client
-      raise NotImplementedError
-    end
+    attr_reader :client
 
     private
 

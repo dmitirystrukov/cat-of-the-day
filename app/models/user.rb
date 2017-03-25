@@ -33,6 +33,11 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def day_subject_provider_names(day_subject_id)
+    provider_names = social_posts.where(day_subject_id: day_subject_id).actively.uniq.pluck(:service_name)
+    provider_names.map { |name| SocialProvider::PROVIDER_TYPES[name].name.demodulize.downcase }
+  end
+
   def connected_provider_names
     social_profiles.pluck(:service_name)
   end
