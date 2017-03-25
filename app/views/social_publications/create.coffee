@@ -4,9 +4,17 @@
   $('body').animate { scrollTop: 0 }, 'slow'
   $('body').prepend(flashMessage)
 
-  $('section.tabcontent').append('<%= j render "day_subjects/show/consumer/tabs/item", social_post: @social_post %>')
+  serviceName   = '<%= @social_post.service_name_humanized.downcase %>'
+  serviceNameId = "##{serviceName}"
+
+  if !!$("a#{serviceNameId}")
+    $('ul.tab').append("<li> <a class='tablinks' id='#{serviceName}'> <i class='fa fa-#{serviceName}' /> #{serviceName} </a> </li> ")
+    $('section.tabcontent').after("<section class='tabcontent tiles' id='#{serviceName}'/>")
+
+  $("section#{serviceNameId}.tabcontent").append('<%= j render "day_subjects/show/consumer/tabs/item", social_post: @social_post %>')
 
   Alert.hide()
+  Tabs.init()
 <% else %>
   errorMessages = JSON.parse('<%= raw @social_post.errors.to_hash.to_json %>')
   modelName = 'social_post'

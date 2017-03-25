@@ -1,5 +1,6 @@
 class SocialPublicationsController < ApplicationController
   include ProviderTool
+  include ProviderValidation
 
   respond_to :js
   layout false
@@ -28,26 +29,6 @@ class SocialPublicationsController < ApplicationController
     @day_subject ||= DaySubject.find(social_post_params[:day_subject_id])
   end
 
-  def proccess_validation!
-    validate_profile_data
-    validate_provider_type
-    validate_image_exists
-
-  rescue ProviderValidationError
-    redirect_to day_subject_path(day_subject), flash: { error: 'Provider validation error' }
-  end
-
-  def validate_profile_data
-    raise ProviderValidationError if profile_data.nil?
-  end
-
-  def validate_provider_type
-    raise ProviderValidationError if SocialProvider::PROVIDER_TYPES[provider_type].nil?
-  end
-
-  def validate_image_exists
-    raise ProviderValidationError if social_post_params[:day_subject_image_id].nil?
-  end
 
   def social_post_params
     params.require(:social_post).permit(:message, :service_name, :day_subject_id, :day_subject_image_id)
