@@ -55,11 +55,15 @@ RSpec.describe SocialPublicationsController, type: :controller do
         let(:service_name)    { 'TwitterPost' }
 
         let(:twitter_client) { double }
+        let(:status)         { double }
         let(:twitter_post)   { TwitterPost.first }
 
         before do
           allow(Twitter::REST::Client).to receive(:new).and_return(twitter_client)
           allow(twitter_client).to receive(:update_with_media).and_return(::Twitter::Tweet.new(id: 111_111))
+
+          allow(twitter_client).to receive(:status).and_return(status)
+          allow(status).to receive(:url).and_return('someurl')
         end
 
         it 'create twitter post' do
@@ -78,11 +82,14 @@ RSpec.describe SocialPublicationsController, type: :controller do
         let(:service_name) { 'FacebookPost' }
 
         let(:facebook_client) { double }
-        let(:facebook_post) { FacebookPost.first }
+        let(:status)          { double }
+        let(:facebook_post)   { FacebookPost.first }
 
         before do
           allow(Koala::Facebook::API).to receive(:new).and_return(facebook_client)
           allow(facebook_client).to receive(:put_picture).and_return('post_id' => 111_111)
+
+          allow(facebook_client).to receive(:get_object).and_return({'permalink_url' => 'someurl'})
         end
 
         it 'create facebook post' do
