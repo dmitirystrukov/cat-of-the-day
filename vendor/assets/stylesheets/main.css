@@ -2717,7 +2717,8 @@
 				}
 
 				.tiles article > a.post-author {
-					top: 35px;
+					top: 145px;
+					height: 60px;
 					font-weight: bold;
 					font-size: 15px;
         }
@@ -3201,7 +3202,7 @@
 /* Footer */
 
 	#footer {
-		padding: 5em 0 6em 0 ;
+		padding: .1em 0 .1em 0 ;
 		background-color: #f6f6f6;
 	}
 

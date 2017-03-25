@@ -14,7 +14,6 @@
   $("section#{serviceNameId}.tabcontent").append('<%= j render "day_subjects/show/consumer/tabs/item", social_post: @social_post %>')
 
   Alert.hide()
-  Tabs.init()
 <% else %>
   errorMessages = JSON.parse('<%= raw @social_post.errors.to_hash.to_json %>')
   modelName = 'social_post'

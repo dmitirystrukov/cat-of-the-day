@@ -7,19 +7,6 @@ Rails.application.routes.draw do
   root 'day_subjects#index'
 
   resources :day_subjects
-
-  # scope module: :guest, shallow_prefix: :guest do
-  #   resources :day_subjects, only: :show, shallow: true
-  # end
-  #
-  # scope module: :client, shallow_prefix: :client do
-  # end
-  #
-  # scope module: :consumer, shallow_prefix: :consumer do
-  #   resources :day_subjects, only: :show, shallow: true
-  # end
-
-  # resources :day_subjects
   resources :social_publications, only: :create
 
   namespace :account do
