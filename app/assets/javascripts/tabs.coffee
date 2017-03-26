@@ -1,7 +1,12 @@
 $ ->
-  $('.tablinks').first().addClass('active')
-  $('.tabcontent').first().addClass('active')
+  # $('.tablinks').first().addClass('active')
+  # $('.tabcontent').first().addClass('active')
 
 $(document).on 'click', '.tablinks', ->
-  $('.tablinks').toggleClass('active')
-  $('.tabcontent').toggleClass('active')
+  $('.tablinks').removeClass('active')
+  $('.tabcontent').removeClass('active')
+
+  providerName = $(this).attr('id')
+
+  $(".tablinks##{providerName}").addClass('active')
+  $(".tabcontent##{providerName}").addClass('active')

@@ -2,7 +2,7 @@ class DaySubjectsController < ApplicationController
   PER_PAGE = 9
 
   authorize_resource
-  respond_to :html
+  respond_to :js, :html
 
   before_action :current_namespace, only: :show
 
@@ -14,7 +14,10 @@ class DaySubjectsController < ApplicationController
     @day_subject  = DaySubject.find(params[:id])
     @social_posts = social_posts
 
-    render "day_subjects/show/#{current_namespace}/show"
+    respond_to do |format|
+      format.html { render "day_subjects/show/#{current_namespace}/show" }
+      format.js   { render layout: false }
+    end
   end
 
   def new
@@ -60,9 +63,9 @@ class DaySubjectsController < ApplicationController
   def social_posts
     case current_namespace.to_sym
     when :consumer
-      SocialProvider.collect_social_posts(current_user, @day_subject.to_param)
+      SocialProvider.collect_social_posts(current_user, params, @day_subject.to_param)
     when :client
-      SocialProvider.collect_social_posts(@day_subject)
+      SocialProvider.collect_social_posts(@day_subject, params)
     end
   end
 
