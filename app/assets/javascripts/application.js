@@ -21,4 +21,4 @@
 //= require loader
 //= require image-uploaders
 //= require Chart
-//= require statistic-chart
+//= require account-chart
