@@ -1,5 +1,6 @@
 class SocialProvider
   PROVIDER_SERVICE_ENDING = :Service
+  PER_PAGE = 9
 
   TYPES = {
     Twitter:  ::TwitterPost.to_s,
@@ -29,16 +30,24 @@ class SocialProvider
   end
 
   class << self
-    def collect_social_posts(model, day_subject_id = nil)
+    def collect_social_posts(model, params, day_subject_id = nil)
       social_posts = {}
 
-      model.connected_provider_names.each do |provider_name|
+      if params[:provider_name].present?
+        provider_names = [ params[:provider_name] ]
+      else
+        provider_names = model.connected_provider_names
+      end
+
+      provider_names.each do |provider_name|
         provider_klass = TYPES[provider_name.capitalize.to_sym].constantize
 
         social_posts[provider_name] = model.public_send(provider_klass.model_name.plural)
         social_posts[provider_name] = social_posts[provider_name].where(day_subject_id: day_subject_id) if day_subject_id.present?
 
-        social_posts[provider_name] = social_posts[provider_name].actively
+        page = params[:twitter_page].present? ? params[:twitter_page] : params[:facebook_page]
+
+        social_posts[provider_name] = social_posts[provider_name].actively.page(page).per(PER_PAGE)
       end
 
       social_posts

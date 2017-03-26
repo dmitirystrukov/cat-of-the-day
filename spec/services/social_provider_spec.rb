@@ -57,7 +57,7 @@ RSpec.describe SocialProvider, type: :service do
       let(:user)    { create :user }
       let(:user_id) { user.to_param }
 
-      subject { described_class.collect_social_posts(user, day_subject.to_param) }
+      subject { described_class.collect_social_posts(user, {}, day_subject.to_param) }
 
       it 'should include only active twitter posts' do
         expect(subject['twitter']).to eq TwitterPost.active
@@ -69,7 +69,7 @@ RSpec.describe SocialProvider, type: :service do
     context 'when client social posts' do
       let(:user_id) { Faker::Number.number(6) }
 
-      subject { described_class.collect_social_posts(day_subject) }
+      subject { described_class.collect_social_posts(day_subject, {}) }
 
       it 'should include only active twitter posts' do
         expect(subject['twitter']).to eq TwitterPost.active
