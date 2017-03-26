@@ -1,12 +1,8 @@
 %section
-  %h4 Provisional Statistic
-  %ul.icons.statistic-icons
-    - User::SOCIAL_PROVIDERS.each do |provider|
-      %li
-        %a{ href: '#', class: "icon style2 fa-#{provider}" }
-          %span.label= provider.capitalize
-        .statistic-block
-          %span
-            = #"Posts: #{posts_total(@statistic, provider)}"
-          %span
-            = #"Likes: #{likes_total(@statistic, provider)}"
+  %h4 Statistic for all time
+  %canvas#account-chart.chart{ 'data-chart' => @chart_data }
+%br
+%h4 Latest Social Posts
+%section.tiles
+  - @social_posts.each do |social_post|
+    = render 'day_subjects/show/client/tabs/item', social_post: social_post

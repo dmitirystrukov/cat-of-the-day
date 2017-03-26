@@ -20,3 +20,5 @@
 //= require tabs
 //= require loader
 //= require image-uploaders
+//= require Chart
+//= require account-chart
