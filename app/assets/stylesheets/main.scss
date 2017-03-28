@@ -1668,7 +1668,7 @@
 		-webkit-transition: border-bottom-color 0.2s ease, color 0.2s ease;
 		-ms-transition: border-bottom-color 0.2s ease, color 0.2s ease;
 		transition: border-bottom-color 0.2s ease, color 0.2s ease;
-		text-decoration: none;
+		text-decoration: none!important;
 		color: #585858;
 		border-bottom: dotted 1px rgba(88, 88, 88, 0.5);
 	}
@@ -3416,8 +3416,27 @@
 
 small {
   display: block;
+	color: #999;
+	font-size: 80%;
   line-height: 1.428571429;
-  color: #999;
+}
+
+.btn-social {
+	button {
+		color: #fff!important;
+		font-size: 10px;
+		box-shadow: none;
+	}
+	.dropdown-toggle {
+    border-color: #3b6b94;
+	}
+	a {
+		text-transform: capitalize;
+	}
+}
+
+.open>.dropdown-menu {
+  display: block;
 }
 
 .well {
@@ -3431,4 +3450,11 @@ small {
     border-color: rgb(227, 227, 227);
     border-image: initial;
     border-radius: 4px;
+		p {
+			font-size: 14px;
+	    margin: 0 0 1.30em 0;
+		}
+		h4 {
+			margin: 0 0 .9em 0;
+		}
 }

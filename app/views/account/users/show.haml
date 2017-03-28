@@ -6,34 +6,26 @@
           %img.img-rounded.img-responsive{:alt => "", :src => "http://placehold.it/380x500"}/
         .col-sm-6.col-md-8
           %h4
-            Bhaumik Patel
+            = @user.full_name
           %small
             %cite{:title => "San Francisco, USA"}
-              San Francisco, USA
+              = @user.location
               %i.glyphicon.glyphicon-map-marker
           %p
             %i.glyphicon.glyphicon-envelope>
-            email@example.com
+            = @user.email
             %br/
             %i.glyphicon.glyphicon-globe
-            %a{:href => "http://www.jquery2dotnet.com"} www.jquery2dotnet.com
-            %br/
-            = succeed "June 02, 1988" do
-              %i.glyphicon.glyphicon-gift
-          / Split button
-          .btn-group
+            = link_to @user.website, @user.website, target: '_blank'
+          .btn-group.btn-social
             %button.btn.btn-primary{:type => "button"}
               Social
             %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
               %span.caret
               %span.sr-only Social
             %ul.dropdown-menu{:role => "menu"}
-              %li
-                %a{:href => "#"} Twitter
-              %li
-                %a{:href => "https://plus.google.com/+Jquery2dotnet/posts"} Google +
-              %li
-                %a{:href => "https://www.facebook.com/jquery2dotnet"} Facebook
-              %li.divider
-              %li
-                %a{:href => "#"} Github
+              - @user.connected_provider_names.each do |provider_name|
+                %li
+                  %a{:href => "#"}
+                    %i{ class: "fa fa-#{provider_name}" }
+                    = provider_name

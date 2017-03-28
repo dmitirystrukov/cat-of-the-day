@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require tether
+//= require bootstrap
 //= require skel
 //= require util
 //= require main

@@ -39,6 +39,10 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether'
+end
+
 group :production, :release, :staging do
   gem 'uglifier'
   gem 'factory_girl_rails'
