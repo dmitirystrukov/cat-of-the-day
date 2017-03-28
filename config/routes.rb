@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :social_publications, only: :create
 
   namespace :account do
-    get 'statistic' => 'statistic#index'
+    resources :statistics, only: :index
+    resources :users,      only: :show
   end
-
 end
