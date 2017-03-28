@@ -1,8 +1,9 @@
 $ ->
-statChart = $('#account-chart').get(0).getContext('2d')
-data = $('#account-chart').data('chart')
+  if $('#account-chart').length > 0
+    statChart = $('#account-chart').get(0).getContext('2d')
+    data = $('#account-chart').data('chart')
 
-new Chart(statChart,
-  type: 'line'
-  data: data
-)
+    new Chart(statChart,
+      type: 'line'
+      data: data
+    )
