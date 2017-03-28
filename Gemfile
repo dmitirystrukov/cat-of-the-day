@@ -26,6 +26,7 @@ gem 'aasm'
 
 gem 'responders'
 gem 'sass'
+gem 'bootstrap'
 gem 'hamlit'
 gem 'coffee-rails'
 

@@ -1,0 +1,39 @@
+.row
+  .col-xs-12.col-sm-6.col-md-6
+    .well.well-sm
+      .row
+        .col-sm-6.col-md-4
+          %img.img-rounded.img-responsive{:alt => "", :src => "http://placehold.it/380x500"}/
+        .col-sm-6.col-md-8
+          %h4
+            Bhaumik Patel
+          %small
+            %cite{:title => "San Francisco, USA"}
+              San Francisco, USA
+              %i.glyphicon.glyphicon-map-marker
+          %p
+            %i.glyphicon.glyphicon-envelope>
+            email@example.com
+            %br/
+            %i.glyphicon.glyphicon-globe
+            %a{:href => "http://www.jquery2dotnet.com"} www.jquery2dotnet.com
+            %br/
+            = succeed "June 02, 1988" do
+              %i.glyphicon.glyphicon-gift
+          / Split button
+          .btn-group
+            %button.btn.btn-primary{:type => "button"}
+              Social
+            %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+              %span.caret
+              %span.sr-only Social
+            %ul.dropdown-menu{:role => "menu"}
+              %li
+                %a{:href => "#"} Twitter
+              %li
+                %a{:href => "https://plus.google.com/+Jquery2dotnet/posts"} Google +
+              %li
+                %a{:href => "https://www.facebook.com/jquery2dotnet"} Facebook
+              %li.divider
+              %li
+                %a{:href => "#"} Github
