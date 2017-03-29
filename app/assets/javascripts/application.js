@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require tether
+//= require bootstrap
 //= require skel
 //= require util
 //= require main
@@ -22,3 +24,5 @@
 //= require image-uploaders
 //= require Chart
 //= require account-chart
+//= require geocomplete
+//= require init-geocomplete

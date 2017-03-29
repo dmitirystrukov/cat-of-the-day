@@ -1,10 +1,11 @@
 !!!
 %html
   %head
-    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Catday
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all'
+    %script{src: 'http://maps.googleapis.com/maps/api/js?libraries=places'}
   %body
     = render 'shared/loader'
     = render 'shared/flash'
