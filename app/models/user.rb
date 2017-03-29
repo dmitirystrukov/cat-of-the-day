@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   include Omniauthable
 
+  attr_accessor :selected_role
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: SocialProvider.providers_list
@@ -8,6 +10,7 @@ class User < ActiveRecord::Base
   rolify
 
   SOCIAL_PROVIDERS = %w(facebook twitter).freeze
+  DEFAULT_ROLES = %w(client consumer)
 
   SERVICE_TO_NAME = {
     'TwitterService'  => 'twitter',
@@ -25,6 +28,7 @@ class User < ActiveRecord::Base
   has_many :twitter_posts
 
   has_many :social_profiles, dependent: :destroy
+
 
   accepts_nested_attributes_for :profile, update_only: true
   delegate :first_name, :last_name, :location, :website, to: :profile, allow_nil: true

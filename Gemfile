@@ -32,6 +32,7 @@ gem 'coffee-rails'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'geocomplete_rails'
 
 gem 'koala'
 gem 'twitter'
