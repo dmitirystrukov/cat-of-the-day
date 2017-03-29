@@ -1,0 +1,2 @@
+$ ->
+  $('#profile_location').geocomplete()

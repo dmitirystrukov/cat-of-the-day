@@ -2,7 +2,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { registrations: 'registrations', omniauth_callbacks: 'omniauth_callbacks' }
 
   root 'day_subjects#index'
 
@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :social_publications, only: :create
 
   namespace :account do
-    get 'statistic' => 'statistic#index'
+    resources :statistics, only: :index
+    resources :users,      only: :show
   end
-
 end

@@ -26,17 +26,23 @@ gem 'aasm'
 
 gem 'responders'
 gem 'sass'
+gem 'bootstrap'
 gem 'hamlit'
 gem 'coffee-rails'
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
+gem 'geocomplete_rails'
 
 gem 'koala'
 gem 'twitter'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether'
+end
 
 group :production, :release, :staging do
   gem 'uglifier'

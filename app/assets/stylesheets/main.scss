@@ -1668,7 +1668,7 @@
 		-webkit-transition: border-bottom-color 0.2s ease, color 0.2s ease;
 		-ms-transition: border-bottom-color 0.2s ease, color 0.2s ease;
 		transition: border-bottom-color 0.2s ease, color 0.2s ease;
-		text-decoration: none;
+		text-decoration: none!important;
 		color: #585858;
 		border-bottom: dotted 1px rgba(88, 88, 88, 0.5);
 	}
@@ -2325,7 +2325,11 @@
 		}
 
 /* Image */
-
+	.img-responsive {
+	    display: block;
+	    height: auto;
+	    max-width: 100%;
+	}
 	.image {
 		border-radius: 4px;
 		border: 0;
@@ -3408,4 +3412,54 @@
 .statistic-icons li span {
   display: block;
   font-size: 18px;
+}
+
+small {
+  display: block;
+	color: #999;
+	font-size: 80%;
+  line-height: 1.428571429;
+}
+
+.btn-social {
+	button {
+		color: #fff!important;
+		font-size: 10px;
+		box-shadow: none;
+	}
+	.dropdown-toggle {
+    border-color: #3b6b94;
+	}
+	a {
+		text-transform: capitalize;
+	}
+}
+
+.open>.dropdown-menu {
+  display: block;
+}
+
+.well {
+    min-height: 20px;
+    margin-bottom: 20px;
+    background-color: rgb(245, 245, 245);
+    box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 1px inset;
+    padding: 19px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgb(227, 227, 227);
+    border-image: initial;
+    border-radius: 4px;
+		p {
+			font-size: 14px;
+	    margin: 0 0 1.30em 0;
+		}
+		h4 {
+			margin: 0 0 .9em 0;
+		}
+}
+
+.sign-up-form {
+	border: 1px solid #f6f6f6;
+  padding: 5% 5%;
 }
