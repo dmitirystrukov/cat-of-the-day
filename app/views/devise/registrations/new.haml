@@ -1,10 +1,14 @@
 %h2 Sign up
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'sign-up-form' }) do |f|
   = devise_error_messages!
   .field
     = f.label :email
     %br/
     = f.input_field :email, autofocus: true
+  .field
+    = f.label :selected_role
+    %br/
+    = f.input_field :selected_role, collection: User::DEFAULT_ROLES, include_blank: false
   = simple_fields_for :profile, resource.profile do |pf|
     .field
       = pf.label :first_name

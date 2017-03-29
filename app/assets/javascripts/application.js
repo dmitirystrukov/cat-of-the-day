@@ -24,3 +24,5 @@
 //= require image-uploaders
 //= require Chart
 //= require account-chart
+//= require geocomplete
+//= require init-geocomplete

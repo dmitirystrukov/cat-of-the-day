@@ -159,6 +159,8 @@ GEM
     fuubar (2.2.0)
       rspec-core (~> 3.0)
       ruby-progressbar (~> 1.4)
+    geocomplete_rails (1.7.0)
+      railties (>= 3.1)
     gherkin (4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
@@ -413,6 +415,7 @@ DEPENDENCIES
   faker
   friendly_id
   fuubar
+  geocomplete_rails
   hamlit
   heroku_rails_deflate
   jquery-rails

@@ -2,16 +2,14 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(sign_up_params)
 
-    resource.transaction do
-      profile = resource.build_profile(profile_params)
-
-      resource.save
-      profile.save
-    end
+    resource.add_role(sign_up_params[:selected_role])
+    resource.save
 
     yield resource if block_given?
 
     if resource.persisted?
+      resource.create_profile(profile_params)
+
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
@@ -29,6 +27,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   private
+
+  def sign_up_params
+    params.require(:user).permit(:email, :selected_role, :password, :password_confirmation, :current_password)
+  end
 
   def profile_params
     params.require(:profile).permit(:first_name, :last_name, :location, :website)
