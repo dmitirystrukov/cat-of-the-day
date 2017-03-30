@@ -21,5 +21,9 @@ module Providers
     def url(post_id)
       @client.status(post_id).url.to_s
     end
+
+    def user_url
+      "#{@client.user.url}"
+    end
   end
 end
