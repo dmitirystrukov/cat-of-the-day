@@ -1,7 +1,5 @@
 module Providers
   class Twitter < Base
-    attr_accessor :post, :post_id
-
     def initialize(data)
       @client ||= ::Twitter::REST::Client.new(data)
     end
@@ -23,7 +21,7 @@ module Providers
     end
 
     def user_url
-      "#{@client.user.url}"
+      @client.user.url.to_s
     end
   end
 end

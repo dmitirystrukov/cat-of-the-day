@@ -42,8 +42,8 @@ class User < ActiveRecord::Base
     provider_names.map { |name| SocialProvider::PROVIDER_TYPES[name].name.demodulize.downcase }
   end
 
-  def connected_provider_names
-    social_profiles.pluck(:service_name)
+  def connected_provider_names(columns = :service_name)
+    social_profiles.pluck(*columns)
   end
 
   def client?
