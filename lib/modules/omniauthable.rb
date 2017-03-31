@@ -40,15 +40,10 @@ module Omniauthable
     def register_social_profile(oauth_data, data)
       social_profile = SocialProfile.find_or_create_by(oauth_data)
 
-      # if social_profile.service_name == 'twitter'
-      #   binding.pry
-      #   provider = Providers::Twitter.new(data.to_json)
-      # elsif social_profile.service_name == 'facebook'
-      #   binding.pry
-      #   provider = Providers::Facebook.new(data.to_json)
-      # end
+      social_profile.update(data: data.to_json)
 
-      social_profile.update(data: data.to_json)#, url: provider.user_url)
+      provider = SocialProvider.new(social_profile.data, "#{social_profile.service_name.capitalize}Post")
+      social_profile.update(url: provider.client.user_url)
 
       if social_profile.user_id.present?
         return false if social_profile.user_id != id

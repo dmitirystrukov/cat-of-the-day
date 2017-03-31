@@ -3,12 +3,12 @@
     .well.well-sm
       .row
         .col-sm-6.col-md-4
-          %img.img-rounded.img-responsive{:alt => "", :src => "http://placehold.it/380x500"}/
+          %img.img-rounded.img-responsive{alt: "", src: "http://placehold.it/380x500"}/
         .col-sm-6.col-md-8
           %h4
             = @user.full_name
           %small
-            %cite{:title => "San Francisco, USA"}
+            %cite{title: "San Francisco, USA"}
               = @user.location
               %i.glyphicon.glyphicon-map-marker
           %p
@@ -18,14 +18,14 @@
             %i.glyphicon.glyphicon-globe
             = link_to @user.website, @user.website, target: '_blank'
           .btn-group.btn-social
-            %button.btn.btn-primary{:type => "button"}
+            %button.btn.btn-primary{type: "button"}
               Social
-            %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", :type => "button"}
+            %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
               %span.caret
               %span.sr-only Social
-            %ul.dropdown-menu{:role => "menu"}
-              - @user.connected_provider_names.each do |provider_name|
+            %ul.dropdown-menu{role: 'menu'}
+              - @user.connected_provider_names([:service_name, :url]).each do |name, url|
                 %li
-                  %a{:href => "#"}
-                    %i{ class: "fa fa-#{provider_name}" }
-                    = provider_name
+                  = link_to url, target: '_blank' do
+                    %i{ class: "fa fa-#{name}" }
+                    = name

@@ -20,8 +20,8 @@ module Providers
       @client.get_object(post_id, fields: 'permalink_url')['permalink_url']
     end
 
-    # def user_url
-    #   "#{@client.user.url}"
-    # end
+    def user_url
+      @client.get_object('me', fields: 'link')['link']
+    end
   end
 end
