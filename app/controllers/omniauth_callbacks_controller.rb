@@ -24,6 +24,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       twitter_attributes(oauth_data)
     elsif params[:action] == 'facebook'
       facebook_attributes(oauth_data)
+    else
+      raise NotImplementedError
     end
   end
 
