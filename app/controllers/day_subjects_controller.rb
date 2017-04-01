@@ -4,8 +4,6 @@ class DaySubjectsController < ApplicationController
   authorize_resource
   respond_to :js, :html
 
-  before_action :current_namespace, only: :show
-
   def index
     @day_subjects = DaySubject.page(params[:page]).per(PER_PAGE)
   end
@@ -67,10 +65,6 @@ class DaySubjectsController < ApplicationController
     when :client
       SocialProvider.collect_social_posts(@day_subject, params)
     end
-  end
-
-  def current_namespace
-    current_user.present? ? current_user.role.name : :guest
   end
 
   def day_subject_params

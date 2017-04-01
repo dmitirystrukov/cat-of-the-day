@@ -15,10 +15,4 @@
   %h2 Menu
   %ul
     %li
-      = link_to 'Home', root_path
-      - if signed_in?
-        = link_to 'Statistic', account_statistics_path
-        = link_to 'Logout', destroy_user_session_path
-      - else
-        = link_to 'Sign in', new_user_session_path
-        = link_to 'Sign up', new_user_registration_path
+      = render "shared/menu/#{current_namespace}"

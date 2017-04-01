@@ -68,6 +68,7 @@ group :test do
   gem 'launchy'
   gem 'fuubar'
   gem 'simplecov', require: false
+  gem 'timecop'
 end
 
 group :development, :test do
