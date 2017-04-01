@@ -38,14 +38,18 @@ module Omniauthable
     end
 
     def register_social_profile(oauth_data, data)
-      social_profile = SocialProfile.find_or_create_by(oauth_data)
-      social_profile.update(data: data.to_json)
+      social_profile = SocialProfile.find_or_initialize_by(oauth_data)
+
+      social_profile.data = data.to_json
+      social_profile.url  = provider(social_profile).client.user_url
 
       if social_profile.user_id.present?
         return false if social_profile.user_id != id
       else
-        social_profile.update!(user_id: id)
+        social_profile.user_id = id
       end
+
+      social_profile.save
 
       social_profile.persisted? ? social_profile : false
     end
@@ -58,6 +62,12 @@ module Omniauthable
 
     def email_required?
       !social_login
+    end
+
+    private
+
+    def provider(social_profile)
+      SocialProvider.new(social_profile.data, SocialProvider::TYPES[social_profile.service_name.capitalize.to_sym])
     end
   end
 end
