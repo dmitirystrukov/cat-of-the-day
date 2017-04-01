@@ -2,12 +2,29 @@ require 'rails_helper'
 
 RSpec.describe SocialPublicationsController, type: :controller do
   describe '#create' do
-    let(:user)        { create :user }
+    let(:user)        { create :user, :with_role, user_role: :consumer }
+    let(:client)      { create :user, :with_role, user_role: :client }
     let(:day_subject) { create :day_subject }
 
     before { sign_in user }
 
     subject { post :create, params }
+
+    # TODO: It should raise permission error
+    context 'when user client', pending: true do
+      let(:day_subject_image) { create :day_subject_image, day_subject: day_subject }
+
+      let(:params) do
+        { social_post: { day_subject_id: day_subject.to_param, day_subject_image_id: day_subject_image.to_param,
+                         service_name: 'TwitterPost', message: 'Hello' }, format: :js }
+      end
+
+      before do
+        allow(controller).to receive(:proccess_validation!).and_return(true)
+      end
+
+      it { subject }
+    end
 
     context 'validations' do
       let(:params) { { social_post: { day_subject_id: day_subject.to_param, service_name: service_name, message: 'Hello' }, format: :js } }
