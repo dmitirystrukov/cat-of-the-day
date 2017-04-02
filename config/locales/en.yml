@@ -9,3 +9,9 @@ en:
   social_posts:
     create:
       success: "You post has been successfully created in %{provider}"
+  api:
+    public:
+      nickname_validation:
+        validate:
+          success: "Nickname is not used"
+          failure: "Nickname already in use"
