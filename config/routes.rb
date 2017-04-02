@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :statistics, only: :index
-    resources :users,      only: :show
+    resources :users,      only: [:show, :edit, :update]
   end
 end

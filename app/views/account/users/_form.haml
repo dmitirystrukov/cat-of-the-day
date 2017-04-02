@@ -1,0 +1,20 @@
+= simple_form_for current_user, url: account_user_path(current_user) do |f|
+  .field
+    = f.label :email
+    %br/
+    = f.input_field :email, autofocus: true
+  = f.simple_fields_for :profile do |pf|
+    .field
+      = pf.label :first_name
+      = pf.input_field :first_name
+    .field
+      = pf.label :last_name
+      = pf.input_field :last_name
+    .field
+      = pf.label :location
+      = pf.input_field :location
+    .field
+      = pf.label :website
+      = pf.input_field :website
+  .actions
+    = f.submit

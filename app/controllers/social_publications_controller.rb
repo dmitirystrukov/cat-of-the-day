@@ -1,4 +1,6 @@
 class SocialPublicationsController < ApplicationController
+  authorize_resource class: false
+  
   include ProviderTool
   include ProviderValidation
 

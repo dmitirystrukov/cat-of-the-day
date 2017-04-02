@@ -1,10 +1,8 @@
 .row
-  .col-xs-12.col-sm-6.col-md-6
+  .col-xs-6.col-sm-6.col-md-3
     .well.well-sm
       .row
-        .col-sm-6.col-md-4
-          %img.img-rounded.img-responsive{alt: "", src: "http://placehold.it/380x500"}/
-        .col-sm-6.col-md-8
+        .col-sm-12.col-md-12
           %h4
             = @user.full_name
           %small
@@ -17,6 +15,9 @@
             %br/
             %i.glyphicon.glyphicon-globe
             = link_to @user.website, @user.website, target: '_blank'
+          - if profile_owner?(@user)
+            .btn-group
+              = link_to 'Edit profile', edit_account_user_path(@user.profile), class: 'btn btn-primary'
           .btn-group.btn-social
             %button.btn.btn-primary{type: "button"}
               Social
@@ -24,8 +25,12 @@
               %span.caret
               %span.sr-only Social
             %ul.dropdown-menu{role: 'menu'}
-              - @user.connected_provider_names([:service_name, :url]).each do |name, url|
+              - if @user.connected_provider_names.present?
+                - @user.connected_provider_names([:service_name, :url]).each do |name, url|
+                  %li
+                    = link_to url, target: '_blank' do
+                      %i{ class: "fa fa-#{name}" }
+                      = name
+              - else
                 %li
-                  = link_to url, target: '_blank' do
-                    %i{ class: "fa fa-#{name}" }
-                    = name
+                  Nothing found
