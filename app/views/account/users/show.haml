@@ -15,6 +15,9 @@
             %br/
             %i.glyphicon.glyphicon-globe
             = link_to @user.website, @user.website, target: '_blank'
+          - if profile_owner?(@user)
+            .btn-group
+              = link_to 'Edit profile', edit_account_user_path(@user.profile), class: 'btn btn-primary'
           .btn-group.btn-social
             %button.btn.btn-primary{type: "button"}
               Social
@@ -22,8 +25,12 @@
               %span.caret
               %span.sr-only Social
             %ul.dropdown-menu{role: 'menu'}
-              - @user.connected_provider_names([:service_name, :url]).each do |name, url|
+              - if @user.connected_provider_names.present?
+                - @user.connected_provider_names([:service_name, :url]).each do |name, url|
+                  %li
+                    = link_to url, target: '_blank' do
+                      %i{ class: "fa fa-#{name}" }
+                      = name
+              - else
                 %li
-                  = link_to url, target: '_blank' do
-                    %i{ class: "fa fa-#{name}" }
-                    = name
+                  Nothing found

@@ -1,5 +1,5 @@
 $ ->
-  $profileLocation = $('#profile_location')
+  $profileLocation = $('#user_profile_attributes_location')
 
   if $profileLocation.length > 0
-    $('#profile_location').geocomplete()
+    $profileLocation.geocomplete()
