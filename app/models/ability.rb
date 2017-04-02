@@ -38,7 +38,7 @@ class Ability
     can :create, SocialPost
     can :create, :social_publication
 
-    can :edit, User if profile_owner?
+    can [:edit, :update], User if profile_owner?
 
     cannot :read, [:account, :statistic]
   end
