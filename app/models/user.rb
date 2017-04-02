@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
     'FacebookService' => 'facebook'
   }.freeze
 
-  has_one :profile
+  has_one :profile, dependent: :destroy
   has_one :users_role
   has_one :role, through: :users_role
 
@@ -29,9 +29,12 @@ class User < ActiveRecord::Base
 
   has_many :social_profiles, dependent: :destroy
 
+  scope :by_slug, -> (slug) { joins(:profile).find_by('profiles.slug = ?', slug) }
+
+  validates :email, presence: true
 
   accepts_nested_attributes_for :profile, update_only: true
-  delegate :first_name, :last_name, :location, :website, to: :profile, allow_nil: true
+  delegate :first_name, :last_name, :nickname, :slug, :location, :website, to: :profile, allow_nil: true
 
   def full_name
     "#{first_name} #{last_name}"

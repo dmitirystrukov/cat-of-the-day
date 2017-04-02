@@ -14,4 +14,8 @@ module ApplicationHelper
   def record_first?(record, collection)
     record == collection.first
   end
+
+  def profile_owner?(user)
+    current_user == user
+  end
 end
