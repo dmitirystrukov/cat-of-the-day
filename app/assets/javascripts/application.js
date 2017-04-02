@@ -26,3 +26,4 @@
 //= require account-chart
 //= require geocomplete
 //= require init-geocomplete
+//= require nickname-validation
