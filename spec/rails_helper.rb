@@ -31,3 +31,5 @@ RSpec.configure do |config|
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.include FeatureHelpers,      type: :feature
 end
+
+RSpec::Expectations.configuration.on_potential_false_positives = :nothing
