@@ -25,7 +25,7 @@ class DaySubjectsController < ApplicationController
 
   def create
     @day_subject = current_user.day_subjects.create(day_subject_params)
-    flash[:notice] = I18n.t('day_subjects.create.success') if @day_subject.valid?
+    flash[:notice] = t('.success') if @day_subject.valid?
 
     respond_with @day_subject
   end
@@ -36,14 +36,14 @@ class DaySubjectsController < ApplicationController
 
   def update
     @day_subject = current_user.day_subjects.find(params[:id]).update(day_subject_params)
-    flash[:notice] = I18n.t('day_subjects.update.success') if @day_subject.valid?
+    flash[:notice] = t('.success') if @day_subject.valid?
 
     respond_with @day_subject
   end
 
   def destroy
     @day_subject = current_user.day_subjects.find(params[:id]).destroy
-    flash[:notice] = I18n.t('day_subjects.destroy.success')
+    flash[:notice] = t('.success')
 
     respond_with @day_subject
   end

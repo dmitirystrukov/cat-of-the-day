@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   resources :day_subjects
   resources :social_publications, only: :create
 
+  namespace :api do
+    namespace :public do
+      get :nickname_validation, to: 'nickname_validation#validate'
+    end
+  end
+
   namespace :account do
     resources :statistics, only: :index
     resources :users,      only: [:show, :edit, :update]
