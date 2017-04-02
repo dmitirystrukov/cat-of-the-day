@@ -1,4 +1,5 @@
 %h2 Sign up
+
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'sign-up-form' }) do |f|
   = devise_error_messages!
   .field
@@ -9,28 +10,37 @@
     = f.label :selected_role
     %br/
     = f.input_field :selected_role, collection: User::DEFAULT_ROLES, include_blank: false
-  = simple_fields_for :profile, resource.profile do |pf|
+  = f.simple_fields_for :profile do |pf|
     .field
       = pf.label :first_name
       = pf.input_field :first_name
     .field
+      = pf.label :nickname
+      = pf.input_field :nickname
+    .field
       = pf.label :last_name
       = pf.input_field :last_name
-    .field
-      = pf.label :location
-      = pf.input_field :location
-    .field
-      = pf.label :website
-      = pf.input_field :website
+    .spoiler
+      %input#spoilerid_1{type: 'checkbox', checked: true}/
+      %label{for: 'spoilerid_1'}
+        Additional information
+      .spoiler_body
+        .field
+          = pf.label :location
+          = pf.input_field :location
+        .field
+          = pf.label :website
+          = pf.input_field :website
+
   .field
-    = f.label :password
+    = f.label :password, required: true
     - if @minimum_password_length
       %em
         (#{@minimum_password_length} characters minimum)
     %br/
     = f.password_field :password, autocomplete: "off"
   .field
-    = f.label :password_confirmation
+    = f.label :password_confirmation, required: true
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
   .actions

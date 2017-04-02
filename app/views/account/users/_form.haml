@@ -1,10 +1,9 @@
-%h2 Update profile
 = simple_form_for current_user, url: account_user_path(current_user) do |f|
   .field
     = f.label :email
     %br/
     = f.input_field :email, autofocus: true
-  = simple_fields_for :profile, current_user.profile do |pf|
+  = f.simple_fields_for :profile do |pf|
     .field
       = pf.label :first_name
       = pf.input_field :first_name
@@ -18,4 +17,4 @@
       = pf.label :website
       = pf.input_field :website
   .actions
-    = f.submit "Sign up"
+    = f.submit

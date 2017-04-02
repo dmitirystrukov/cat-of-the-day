@@ -10,8 +10,7 @@ Rails.application.routes.draw do
   resources :social_publications, only: :create
 
   namespace :account do
-    resources :my_profile, only: :show
     resources :statistics, only: :index
-    resources :users,      only: [:show, :update]
+    resources :users,      only: [:show, :edit, :update]
   end
 end
