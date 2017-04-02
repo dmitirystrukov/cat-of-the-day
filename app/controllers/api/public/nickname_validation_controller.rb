@@ -4,7 +4,7 @@ module Api
       respond_to :json
 
       def validate
-        message = nickname_exists? ? I18n.t('api.public.nickname_validation.failure') : I18n.t('api.public.nickname_validation.success')
+        message = nickname_exists? ? t('.failure') : t('.success')
 
         render json: { result: nickname_exists?, message: message }
       end

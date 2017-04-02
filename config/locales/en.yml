@@ -12,5 +12,6 @@ en:
   api:
     public:
       nickname_validation:
-        success: "Nickname is not used"
-        failure: "Nickname already in use"
+        validate:
+          success: "Nickname is not used"
+          failure: "Nickname already in use"
