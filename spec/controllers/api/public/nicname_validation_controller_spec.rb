@@ -2,16 +2,22 @@ require 'rails_helper'
 
 RSpec.describe Api::Public::NicknameValidationController, type: :controller do
   describe '#validate' do
-    let!(:user)  { create :user }
     let(:result) { JSON.parse(response.body) }
 
     subject { get :validate, params }
 
     context 'when user nickname exists' do
-      let(:params) { { id: user.profile.to_param, format: :json } }
+      let(:nickname) { 'john-wayne' }
+
+      let!(:user)  { create :user }
+      let(:params) { { id: nickname, format: :json } }
 
       let(:data) do
         { 'result' => true, 'message' => 'Nickname already in use' }
+      end
+
+      before do
+        user.profile.update(nickname: nickname)
       end
 
       it 'return json' do
