@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PostStatisticWorker, type: :worker do
+RSpec.describe PostStatusWorker, type: :worker do
   describe '#perform' do
     let(:user)           { create :user }
     let(:day_subject)    { create :day_subject_with_image }

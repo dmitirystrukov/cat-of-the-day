@@ -2,5 +2,5 @@
   %section.tiles.tabcontent{ id: provider_name, class: tab_active_class(provider_name) }
     - if social_posts[provider_name].present?
       - social_posts[provider_name].each do |social_post|
-        = render 'day_subjects/show/client/tabs/item', social_post: social_post
+        = render 'day_subjects/show/shared/item', social_post: social_post
       = paginate social_posts[provider_name], remote: true, param_name: "#{provider_name}_page", params: { provider_name: provider_name }
