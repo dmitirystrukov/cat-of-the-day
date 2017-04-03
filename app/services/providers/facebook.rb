@@ -23,5 +23,13 @@ module Providers
     def user_url
       @client.get_object('me', fields: 'link')['link']
     end
+
+    def likes_count(post_id)
+      @client.get_object(post_id, fields: 'likes.summary(true)')['likes']['summary']['total_count']
+    end
+
+    def comments_count(post_id)
+      @client.get_object(post_id, fields: 'comments.summary(true)')['comments']['summary']['total_count']
+    end
   end
 end
