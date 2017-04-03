@@ -14,14 +14,14 @@ RSpec.describe Account::StatisticsController, type: :controller do
     end
 
     context 'user has role client' do
-      let(:created_at)   { Time.local(2012, 1, 1) }
+      let(:created_at)   { Time.new(2012, 12, 31, 12, 0, 0, '+02:00') }
       let(:user)         { create :user }
       let(:day_subject)  { create :day_subject_with_image }
       let(:chart_data)   { JSON.parse assigns(:chart_data) }
 
       let(:result_data) do
         {
-          "labels" => ["31/12/11"],
+          "labels" => ["31/12/12"],
           "datasets" =>
              [
                { "label" => "facebook (10)", "data" => [10], "backgroundColor" => "rgba(59, 89, 152, .4)" },
