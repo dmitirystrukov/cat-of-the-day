@@ -1,6 +1,0 @@
-%ul.tab
-  - current_user.day_subject_provider_names(day_subject_id).each do |provider_name|
-    %li
-      %a.tablinks{ id: provider_name, class: tab_active_class(provider_name) }
-        %i{class: "fa fa-#{provider_name}"}
-        = provider_name

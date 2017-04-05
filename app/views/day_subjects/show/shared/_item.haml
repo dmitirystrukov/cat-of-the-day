@@ -4,4 +4,4 @@
   = link_to social_post.url, target: '_blank' do
     %h2
       = social_post.message
-  = link_to "Author (#{social_post.user.email})", account_user_path(social_post.user), class: 'post-author'
+  = link_to "Author (#{social_post.user.email})", account_user_path(social_post.user.profile), class: 'post-author'

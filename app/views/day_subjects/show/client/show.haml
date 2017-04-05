@@ -11,5 +11,5 @@
 
   - if @day_subject.connected_provider_names.present?
     %h2 Users social posts
-    = render 'day_subjects/show/client/tabs/list',    provider_names: @day_subject.connected_provider_names
+    = render 'day_subjects/show/shared/list',         provider_names: @day_subject.connected_provider_names
     = render 'day_subjects/show/client/tabs/content', provider_names: @day_subject.connected_provider_names, social_posts: @social_posts
