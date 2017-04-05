@@ -11,7 +11,7 @@
     $('ul.tab').append("<li> <a class='tablinks' id='#{serviceName}'> <i class='fa fa-#{serviceName}' /> #{serviceName} </a> </li> ")
     $('section.tabcontent').after("<section class='tabcontent tiles' id='#{serviceName}'/>")
 
-  $("section#{serviceNameId}.tabcontent").append('<%= j render "day_subjects/show/consumer/tabs/item", social_post: @social_post %>')
+  $("section#{serviceNameId}.tabcontent").append('<%= j render "day_subjects/show/shared/item", social_post: @social_post %>')
 
   Alert.hide()
 <% else %>

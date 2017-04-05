@@ -23,5 +23,13 @@ module Providers
     def user_url
       @client.user.url.to_s
     end
+
+    def likes_count(post_id)
+      @client.status(post_id).favorite_count
+    end
+
+    def comments_count(post_id)
+      # TODO: Need to be implemented
+    end
   end
 end
