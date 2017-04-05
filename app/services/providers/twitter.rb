@@ -28,8 +28,8 @@ module Providers
       @client.status(post_id).favorite_count
     end
 
-    def share_count(post_id)
-      @client.status(post_id).retweet_count
+    def comments_count(post_id)
+      # TODO: Need to be implemented
     end
   end
 end
