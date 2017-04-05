@@ -28,8 +28,8 @@ module Providers
       @client.status(post_id).favorite_count
     end
 
-    def comments_count(post_id)
-      # TODO: Need to be implemented
+    def reposts_count(post_id)
+      @client.status(post_id).retweet_count
     end
   end
 end
