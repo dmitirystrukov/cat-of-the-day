@@ -2721,7 +2721,7 @@
 				}
 
 				.tiles article > a.post-author {
-					top: 285px;
+					top: 250px;
 					height: 60px;
 					font-weight: bold;
 					font-size: 15px;
@@ -3470,4 +3470,18 @@ sup.info-success {
 
 sup.info-warning {
   color: red;
+}
+
+article > .post-statistic-info {
+	color: #fff;
+	position: absolute;
+	bottom: 10px;
+	right: 10px;
+	z-index: 1;
+
+	span {
+		font-size: 14px;
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		margin-left: 5px;
+	}
 }
