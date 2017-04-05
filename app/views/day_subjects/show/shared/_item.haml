@@ -5,3 +5,6 @@
     %h2
       = social_post.message
   = link_to "Author (#{social_post.user.email})", account_user_path(social_post.user.profile), class: 'post-author'
+  .post-statistic-info
+    - post_statistic_fields(social_post.data).each do |field|
+      = field.html_safe

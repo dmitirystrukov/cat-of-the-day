@@ -1,5 +1,5 @@
 class PostConfiguration
   include ActiveModel::Model
 
-  attr_accessor :reposts_count, :likes_count, :comments_count
+  attr_accessor :reposts_count, :comments_count, :likes_count
 end
