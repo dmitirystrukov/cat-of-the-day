@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   rolify
 
   SOCIAL_PROVIDERS = %w(facebook twitter).freeze
-  DEFAULT_ROLES = %w(client consumer)
+  DEFAULT_ROLES = [%w(client consumer)].freeze
 
   SERVICE_TO_NAME = {
     'TwitterService'  => 'twitter',
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
 
   has_many :social_profiles, dependent: :destroy
 
-  scope :by_slug, -> (slug) { joins(:profile).find_by('profiles.slug = ?', slug) }
+  scope :by_slug, ->(slug) { joins(:profile).find_by('profiles.slug = ?', slug) }
 
   validates :email, presence: true
 
@@ -45,7 +45,7 @@ class User < ActiveRecord::Base
     provider_names.map { |name| SocialProvider::PROVIDER_TYPES[name].name.demodulize.downcase }
   end
 
-  def connected_provider_names(columns = :service_name)
+  def connected_provider_names(columns=:service_name)
     social_profiles.pluck(*columns)
   end
 

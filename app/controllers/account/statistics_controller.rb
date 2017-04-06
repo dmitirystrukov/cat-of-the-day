@@ -8,7 +8,7 @@ module Account
 
     def index
       @chart_data = AccountChart.new.populate
-      @social_posts = SocialPost.latest(SHOW_LATEST)
+      @social_posts = SocialPost.includes(:day_subject_image, :user).latest(SHOW_LATEST)
     end
   end
 end

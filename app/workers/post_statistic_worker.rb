@@ -22,11 +22,11 @@ class PostStatisticWorker
 
   def tweet_post_data(provider, post_id)
     PostConfiguration.new(reposts_count: provider.reposts_count(post_id),
-                            likes_count: provider.likes_count(post_id))
+                          likes_count: provider.likes_count(post_id))
   end
 
   def facebook_post_data(provider, post_id)
     PostConfiguration.new(comments_count: provider.comments_count(post_id),
-                            likes_count:  provider.likes_count(post_id))
+                          likes_count:  provider.likes_count(post_id))
   end
 end

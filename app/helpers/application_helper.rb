@@ -3,7 +3,7 @@ module ApplicationHelper
     'likes_count'    => 'fa fa-heart',
     'reposts_count'  => 'fa fa-retweet',
     'comments_count' => 'fa fa-comments-o'
-  }
+  }.freeze
 
   def provider_active_class(provider_name)
     provider_active?(provider_name) ? 'active' : ''
@@ -13,7 +13,7 @@ module ApplicationHelper
     current_user.social_profiles.any? { |profile| profile.service_name == provider_name }
   end
 
-  def tab_active_class(record, collection = SocialProvider.providers_list)
+  def tab_active_class(record, collection=SocialProvider.providers_list)
     record_first?(record, collection) ? 'active' : ''
   end
 
@@ -33,7 +33,7 @@ module ApplicationHelper
 
   def post_field(value, icon_class)
     content_tag :i, class: icon_class do
-      concat content_tag :span, "#{value}".html_safe
+      concat content_tag :span, value.to_s.html_safe
     end
   end
 end
