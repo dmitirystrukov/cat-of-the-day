@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :public do
-      get :nickname_validation, to: 'nickname_validation#validate'
+      resources :profiles, only: :show
     end
   end
 
