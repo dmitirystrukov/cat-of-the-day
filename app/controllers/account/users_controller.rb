@@ -1,10 +1,18 @@
 module Account
   class UsersController < ApplicationController
+    PER_PAGE = 9
+
     authorize_resource
     respond_to :html
 
     def show
       @user = User.by_slug(params[:id])
+      @social_posts = @user.social_posts.page(params[:page]).per(PER_PAGE)
+
+      @charts = [
+        AccountChart.new.populate('facebook-only'),
+        AccountChart.new.populate('twitter-only')
+      ]
     end
 
     def update

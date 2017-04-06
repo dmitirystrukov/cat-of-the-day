@@ -1,4 +1,4 @@
-= simple_form_for current_user, url: account_user_path(current_user) do |f|
+= simple_form_for current_user, url: account_user_path(current_user.profile) do |f|
   .field
     = f.label :email
     %br/

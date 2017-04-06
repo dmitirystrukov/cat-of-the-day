@@ -2721,7 +2721,7 @@
 				}
 
 				.tiles article > a.post-author {
-					top: 250px;
+					margin-top: 145px;
 					height: 60px;
 					font-weight: bold;
 					font-size: 15px;
@@ -3429,14 +3429,21 @@ small {
 	}
 	.dropdown-toggle {
     border-color: #3b6b94;
+		height: auto;
 	}
 	a {
+		color: #fff!important;
 		text-transform: capitalize;
+		border: none;
+		-webkit-appearance: none;
 	}
 }
 
 .open>.dropdown-menu {
   display: block;
+	li > a {
+    color: #585858!important;
+	}
 }
 
 .well {

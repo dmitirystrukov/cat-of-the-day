@@ -29,7 +29,7 @@ class Ability
     can [:update, :destroy], DaySubject if day_subject.present? && day_subject.owner?(current_user)
 
     can :read, [:account, :statistic]
-    can :read, User 
+    can :read, User
 
     cannot :create, :social_publication
   end
