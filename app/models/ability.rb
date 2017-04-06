@@ -3,7 +3,7 @@ class Ability
 
   attr_reader :current_user, :user, :day_subject
 
-  def initialize(current_user, day_subject = nil, user = nil)
+  def initialize(current_user, day_subject=nil, user=nil)
     @current_user = current_user
 
     @day_subject = day_subject
@@ -29,7 +29,7 @@ class Ability
     can [:update, :destroy], DaySubject if day_subject.present? && day_subject.owner?(current_user)
 
     can :read, [:account, :statistic]
-    can :read, User 
+    can :read, User
 
     cannot :create, :social_publication
   end
@@ -47,8 +47,6 @@ class Ability
   def guest_abilities
     can :read, DaySubject
   end
-
-  private
 
   def profile_owner?
     current_user == user

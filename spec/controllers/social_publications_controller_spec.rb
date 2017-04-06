@@ -28,7 +28,10 @@ RSpec.describe SocialPublicationsController, type: :controller do
     end
 
     context 'validations' do
-      let(:params) { { social_post: { day_subject_id: day_subject.to_param, service_name: service_name, message: 'Hello' }, format: :js } }
+      let(:params) do
+        { social_post: { day_subject_id: day_subject.to_param, service_name: service_name,
+                         message: 'Hello' }, format: :js }
+      end
 
       context 'when profile data empty' do
         let(:service_name) { 'TwitterPost' }
@@ -107,7 +110,7 @@ RSpec.describe SocialPublicationsController, type: :controller do
           allow(Koala::Facebook::API).to receive(:new).and_return(facebook_client)
           allow(facebook_client).to receive(:put_picture).and_return('post_id' => 111_111)
 
-          allow(facebook_client).to receive(:get_object).and_return({'permalink_url' => 'someurl'})
+          allow(facebook_client).to receive(:get_object).and_return('permalink_url' => 'someurl')
         end
 
         it 'create facebook post' do
