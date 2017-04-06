@@ -7,10 +7,14 @@ RSpec.describe AccountChart, type: :service do
     let(:user) { create :user }
     let(:day_subject) { create :day_subject_with_image }
 
-    let!(:facebook_posts) { create_list :social_post, 5, user: user, day_subject_id: day_subject.to_param, service_name: 'FacebookPost',
-                                             day_subject_image_id: day_subject.day_subject_images.first.to_param, created_at: Date.new(2017, 3, 1) }
-    let!(:twitter_posts)  { create_list :social_post, 5, user: user, day_subject_id: day_subject.to_param, service_name: 'TwitterPost',
-                                             day_subject_image_id: day_subject.day_subject_images.first.to_param, created_at: Date.new(2017, 3, 2) }
+    let!(:facebook_posts) do
+      create_list :social_post, 5, user: user, day_subject_id: day_subject.to_param, service_name: 'FacebookPost',
+                                   day_subject_image_id: day_subject.day_subject_images.first.to_param, created_at: Date.new(2017, 3, 1)
+    end
+    let!(:twitter_posts) do
+      create_list :social_post, 5, user: user, day_subject_id: day_subject.to_param, service_name: 'TwitterPost',
+                                   day_subject_image_id: day_subject.day_subject_images.first.to_param, created_at: Date.new(2017, 3, 2)
+    end
     let(:data) { JSON.parse subject }
     let(:dataset) do
       [

@@ -1,6 +1,6 @@
 class SocialPublicationsController < ApplicationController
   authorize_resource class: false
-  
+
   include ProviderTool
   include ProviderValidation
 
@@ -30,7 +30,6 @@ class SocialPublicationsController < ApplicationController
   def day_subject
     @day_subject ||= DaySubject.find(social_post_params[:day_subject_id])
   end
-
 
   def social_post_params
     params.require(:social_post).permit(:message, :service_name, :day_subject_id, :day_subject_image_id)

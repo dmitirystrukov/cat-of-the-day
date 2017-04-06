@@ -5,12 +5,12 @@ module ProviderTool
     PROVIDER_POST_IDS = {
       'FacebookPost' => ->(post) { post['post_id'] },
       'TwitterPost'  => ->(post) { post.id }
-    }
+    }.freeze
 
     PROVIDER_PROFILE_DATA = {
       'FacebookPost' => ->(user) { user.facebook_post_data },
       'TwitterPost'  => ->(user) { user.twitter_post_data }
-    }
+    }.freeze
 
     private
 

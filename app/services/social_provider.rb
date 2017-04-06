@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class SocialProvider
   PROVIDER_SERVICE_ENDING = :Service
   PER_PAGE = 9
@@ -30,14 +31,14 @@ class SocialProvider
   end
 
   class << self
-    def collect_social_posts(model, params, day_subject_id = nil)
+    def collect_social_posts(model, params, day_subject_id=nil)
       social_posts = {}
 
-      if params[:provider_name].present?
-        provider_names = [ params[:provider_name] ]
-      else
-        provider_names = model.connected_provider_names
-      end
+      provider_names = if params[:provider_name].present?
+                         [params[:provider_name]]
+                       else
+                         model.connected_provider_names
+                       end
 
       provider_names.each do |provider_name|
         provider_klass = TYPES[provider_name.capitalize.to_sym].constantize
@@ -47,7 +48,7 @@ class SocialProvider
 
         page = params[:twitter_page].present? ? params[:twitter_page] : params[:facebook_page]
 
-        social_posts[provider_name] = social_posts[provider_name].actively.page(page).per(PER_PAGE)
+        social_posts[provider_name] = social_posts[provider_name].actively.includes(:day_subject_image, :user).page(page).per(PER_PAGE)
       end
 
       social_posts
