@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Api::Public::NicknameValidationController, type: :controller do
-  describe '#validate' do
+RSpec.describe Api::Public::ProfilesController, type: :controller do
+  describe '#show' do
     let(:result) { JSON.parse(response.body) }
 
-    subject { get :validate, params }
+    subject { get :show, params }
 
     context 'when user nickname exists' do
       let(:nickname) { 'john-wayne' }
@@ -13,7 +13,7 @@ RSpec.describe Api::Public::NicknameValidationController, type: :controller do
       let(:params) { { id: nickname, format: :json } }
 
       let(:data) do
-        { 'result' => true, 'message' => 'Nickname already in use' }
+        { 'first_name' => user.first_name, 'last_name' => user.last_name, 'location' => user.location }
       end
 
       before do
@@ -30,14 +30,10 @@ RSpec.describe Api::Public::NicknameValidationController, type: :controller do
     context 'when user nickname not exists' do
       let(:params) { { id: 'somenickname', format: :json } }
 
-      let(:data) do
-        { 'result' => false, 'message' => 'Nickname is not used' }
-      end
-
       it 'return json' do
         subject
 
-        expect(result).to eq data
+        expect(response.body).to eq 'null'
       end
     end
   end

@@ -2,7 +2,7 @@ module Charts
   class TwitterChart < Base
     def dataset
       ::TwitterChart.new(label: "twitter (#{relation.count})",
-                         data:  chart_data(relation, period_dates)).instance_values
+                         data:  chart_data(relation, period_dates(relation)) ).instance_values
     end
 
     private

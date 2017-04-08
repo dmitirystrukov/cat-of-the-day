@@ -2,11 +2,9 @@
   .col-xs-6.col-sm-6.col-md-3
     .well.well-sm
       = render 'account/users/show/profile_information', user: @user
-%ul
-  %li
-    = "Facebook Posts #{@user.social_posts.by_service('FacebookPost').count}"
-  %li
-    = "Twitter Posts #{@user.social_posts.by_service('TwitterPost').count}"
+
+%canvas#user-profile-chart.chart{ 'data-chart' => @chart_data }
+
 %section.tiles
   - @social_posts.each do |social_post|
     = render 'day_subjects/show/shared/item', social_post: social_post

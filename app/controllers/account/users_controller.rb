@@ -7,12 +7,9 @@ module Account
 
     def show
       @user = User.by_slug(params[:id])
-      @social_posts = @user.social_posts.page(params[:page]).per(PER_PAGE)
 
-      @charts = [
-        AccountChart.new.populate('facebook-only'),
-        AccountChart.new.populate('twitter-only')
-      ]
+      @social_posts = @user.social_posts.page(params[:page]).per(PER_PAGE)
+      @chart_data   = Charts::Base.new(@user.to_param).populate([:facebook_chart, :twitter_chart])
     end
 
     def update

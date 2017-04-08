@@ -7,15 +7,16 @@ module Charts
       twitter_chart:  TwitterChart,
     }.freeze
 
-    attr_reader :user_id
+    attr_reader :user_id, :relation
 
     def initialize(user_id = nil)
       @user_id = user_id
+      @relation = user_id.present? ? SocialPost.where(user_id: user_id) : SocialPost
     end
 
     def populate(chart_names)
       {
-        labels:   labels(period_dates),
+        labels:   labels(period_dates(relation) ),
         datasets: datasets(chart_names)
       }.to_json
     end
@@ -28,8 +29,8 @@ module Charts
       end
     end
 
-    def period_dates(relation = SocialPost)
-      relation.pluck(:created_at).uniq.map do |created_at|
+    def period_dates(collection = SocialPost)
+      collection.pluck(:created_at).uniq.map do |created_at|
         Date.strptime(created_at.strftime(DATE_FORMAT), DATE_FORMAT)
       end
     end

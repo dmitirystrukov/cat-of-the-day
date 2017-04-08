@@ -1,10 +1,10 @@
 class Chart
   include ActiveModel::Model
 
-  attr_accessor :background_color, :label, :data
+  attr_accessor :backgroundColor, :label, :data
 
   def initialize(attributes = {})
     super
-    @background_color = background_color
+    @backgroundColor = background_color
   end
 end

@@ -1,9 +1,11 @@
 $ ->
-  if $('#account-chart').length > 0
-    statChart = $('#account-chart').get(0).getContext('2d')
-    data = $('#account-chart').data('chart')
+  $accountChart = $('#account-chart')
 
-    new Chart(statChart,
+  if $accountChart.length > 0
+    accountContext = $accountChart.get(0).getContext('2d')
+    accountData    = $accountChart.data('chart')
+
+    new Chart(accountContext,
       type: 'line'
-      data: data
+      data: accountData
     )

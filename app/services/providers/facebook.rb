@@ -8,12 +8,12 @@ module Providers
       @client.put_picture(image_file(social_params[:day_subject_image_id]), message: social_params[:message])
     end
 
-    def post_exists?(post_id, options={})
+    def post_exists?(post_id, _options={})
       @client.get_object(post_id)
       true
 
-      rescue Koala::Facebook::ClientError
-        false
+    rescue Koala::Facebook::ClientError
+      false
     end
 
     def url(post_id)

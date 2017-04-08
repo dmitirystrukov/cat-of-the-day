@@ -2,7 +2,7 @@ module Charts
   class FacebookChart < Base
     def dataset
       ::FacebookChart.new(label: "facebook (#{relation.count})",
-                          data:  chart_data(relation, period_dates)).instance_values
+                          data:  chart_data(relation, period_dates(relation)) ).instance_values
     end
 
     private
