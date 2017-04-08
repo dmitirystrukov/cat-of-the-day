@@ -1,6 +1,4 @@
-# frozen_string_literal: true
 class SocialProvider
-  PROVIDER_SERVICE_ENDING = :Service
   PER_PAGE = 9
 
   TYPES = {

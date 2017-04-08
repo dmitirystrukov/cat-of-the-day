@@ -1,36 +1,11 @@
 .row
   .col-xs-6.col-sm-6.col-md-3
     .well.well-sm
-      .row
-        .col-sm-12.col-md-12
-          %h4
-            = @user.full_name
-          %small
-            %cite{title: "San Francisco, USA"}
-              = @user.location
-              %i.glyphicon.glyphicon-map-marker
-          %p
-            %i.glyphicon.glyphicon-envelope>
-            = @user.email
-            %br/
-            %i.glyphicon.glyphicon-globe
-            = link_to @user.website, @user.website, target: '_blank'
-          - if profile_owner?(@user)
-            .btn-group
-              = link_to 'Edit profile', edit_account_user_path(@user.profile), class: 'btn btn-primary'
-          .btn-group.btn-social
-            %button.btn.btn-primary{type: "button"}
-              Social
-            %button.btn.btn-primary.dropdown-toggle{"data-toggle" => "dropdown", type: "button"}
-              %span.caret
-              %span.sr-only Social
-            %ul.dropdown-menu{role: 'menu'}
-              - if @user.connected_provider_names.present?
-                - @user.connected_provider_names([:service_name, :url]).each do |name, url|
-                  %li
-                    = link_to url, target: '_blank' do
-                      %i{ class: "fa fa-#{name}" }
-                      = name
-              - else
-                %li
-                  Nothing found
+      = render 'account/users/show/profile_information', user: @user
+
+%canvas#user-profile-chart.chart{ 'data-chart' => @chart_data }
+
+%section.tiles
+  - @social_posts.each do |social_post|
+    = render 'day_subjects/show/shared/item', social_post: social_post
+  = paginate @social_posts

@@ -24,6 +24,7 @@
 //= require image-uploaders
 //= require Chart
 //= require account-chart
+//= require account-profile-charts
 //= require geocomplete
 //= require init-geocomplete
 //= require nickname-validation

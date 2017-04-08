@@ -7,8 +7,8 @@ module Account
     before_action :authenticate_user!
 
     def index
-      @chart_data = AccountChart.new.populate
-      @social_posts = SocialPost.includes(:day_subject_image, :user).latest(SHOW_LATEST)
+      @chart_data   = Charts::Base.new.populate([:facebook_chart, :twitter_chart])
+      @social_posts = SocialPost.latest(SHOW_LATEST)
     end
   end
 end
