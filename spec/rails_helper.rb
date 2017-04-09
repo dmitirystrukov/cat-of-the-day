@@ -27,9 +27,10 @@ RSpec.configure do |config|
 
   config.include FactoryGirl::Syntax::Methods
 
-  config.include Devise::TestHelpers, type: :view
   config.include Devise::Test::ControllerHelpers, type: :controller
-  config.include FeatureHelpers,      type: :feature
+  config.include Devise::Test::ControllerHelpers, type: :helper
+  config.include Devise::TestHelpers, type: :view
+  config.include FeatureHelpers, type: :feature
 end
 
 RSpec::Expectations.configuration.on_potential_false_positives = :nothing
