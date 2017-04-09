@@ -4,7 +4,7 @@ RSpec.describe 'Creating Day Subject', type: :feature do
   let!(:client) { create :user, :with_role, user_role: :client }
   let(:day_subject) { build :day_subject }
 
-  before { login(client) }
+  before { sign_in client }
 
   scenario 'client creating day subject' do
     visit root_path

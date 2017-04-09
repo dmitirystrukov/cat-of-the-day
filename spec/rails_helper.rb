@@ -1,12 +1,17 @@
 require 'simplecov'
+require 'webmock/rspec'
 
-SimpleCov.start
+SimpleCov.start do
+  add_filter '/config/'
+end
 
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara-screenshot/rspec'
+
+WebMock.disable_net_connect!(allow_localhost: true)
 
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 

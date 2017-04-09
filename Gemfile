@@ -70,6 +70,7 @@ group :test do
   gem 'fuubar'
   gem 'simplecov', require: false
   gem 'timecop'
+  gem 'webmock'
 end
 
 group :development, :test do
