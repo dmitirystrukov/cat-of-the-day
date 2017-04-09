@@ -4,6 +4,7 @@ class SocialPost < ActiveRecord::Base
   serialize :data, SocialPostDataCoder
 
   belongs_to :user
+  belongs_to :day_subject
 
   has_one :day_subject_image, foreign_key: :id, primary_key: :day_subject_image_id
 

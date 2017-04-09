@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :social_post do
     user
+    day_subject
 
     url     { 'someurl' }
     post_id { Faker::Number.number(6) }

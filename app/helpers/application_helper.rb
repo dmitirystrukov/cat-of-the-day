@@ -13,12 +13,12 @@ module ApplicationHelper
     current_user.social_profiles.any? { |profile| profile.service_name == provider_name }
   end
 
-  def tab_active_class(record, collection=SocialProvider.providers_list)
-    record_first?(record, collection) ? 'active' : ''
+  def tab_active_class(provider_name, collection=SocialProvider.providers_list)
+    item_first?(provider_name, collection) ? 'active' : ''
   end
 
-  def record_first?(record, collection)
-    record == collection.first
+  def item_first?(item, collection)
+    item == collection.first
   end
 
   def profile_owner?(user)
