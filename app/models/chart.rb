@@ -3,7 +3,7 @@ class Chart
 
   attr_accessor :backgroundColor, :label, :data
 
-  def initialize(attributes = {})
+  def initialize(attributes={})
     super
     @backgroundColor = background_color
   end

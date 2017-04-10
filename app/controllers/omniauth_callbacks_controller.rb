@@ -14,15 +14,17 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     sign_in_with_oauth_data(oauth_data) unless user_signed_in?
 
-    current_user.register_social_profile({ uid: oauth_data.uid, service_name: oauth_data.provider }, provider_attributes(oauth_data))
+    current_user.register_social_profile({ uid: oauth_data.uid, service_name: oauth_data.provider },
+                                         provider_attributes(oauth_data))
 
     redirect_to root_path
   end
 
   def provider_attributes(oauth_data)
-    if params[:action] == 'twitter'
+    case params[:action]
+    when 'twitter'
       twitter_attributes(oauth_data)
-    elsif params[:action] == 'facebook'
+    when 'facebook'
       facebook_attributes(oauth_data)
     else
       raise NotImplementedError
@@ -43,8 +45,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def sign_in_with_oauth_data(data)
-    user = User.find_or_create_with_oauth(data)
-
-    sign_in :user, user
+    sign_in :user, User.find_or_create_with_oauth(data)
   end
 end
