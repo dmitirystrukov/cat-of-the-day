@@ -19,11 +19,11 @@ $ ->
           infoClass   = 'warning'
           infoMessage = 'Nickname is not used'
 
-          $submitBtn.prop('disabled', true)
+          $submitBtn.prop('disabled', false)
         else
           infoClass   = 'success'
           infoMessage = 'Nickname already in use'
 
-          $submitBtn.prop('disabled', false)
+          $submitBtn.prop('disabled', true)
 
         $nicknameInput.after("<sup id='nickname-response' class='info-#{infoClass}'> #{infoMessage} ")

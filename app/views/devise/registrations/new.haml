@@ -44,5 +44,5 @@
     %br/
     = f.password_field :password_confirmation, autocomplete: "off"
   .actions
-    = f.submit "Sign up"
+    = f.submit "Sign up", disabled: true
 = render "devise/shared/links"
