@@ -30,14 +30,16 @@ RSpec.describe Account::StatisticsController, type: :controller do
         }
       end
 
+      let(:day_subject_image_id) { day_subject.day_subject_images.first.to_param }
+
       let!(:twitter_posts) do
         create_list :social_post, 5, user: user, day_subject_id: day_subject.to_param, created_at: created_at,
-                                     day_subject_image_id: day_subject.day_subject_images.first.to_param, service_name: 'TwitterPost'
+                                     day_subject_image_id: day_subject_image_id, service_name: 'TwitterPost'
       end
 
       let!(:facebook_posts) do
         create_list :social_post, 10, user: user, day_subject_id: day_subject.to_param, created_at: created_at,
-                                      day_subject_image_id: day_subject.day_subject_images.first.to_param, service_name: 'FacebookPost'
+                                      day_subject_image_id: day_subject_image_id, service_name: 'FacebookPost'
       end
 
       before { sign_in client }
