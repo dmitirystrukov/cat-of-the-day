@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
     'FacebookService' => 'facebook'
   }.freeze
 
+  before_create :process_role!
+
   has_one :profile, dependent: :destroy
   has_one :users_role
   has_one :role, through: :users_role
@@ -35,6 +37,11 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :profile, update_only: true
   delegate :first_name, :last_name, :nickname, :slug, :location, :website, to: :profile, allow_nil: true
+
+  def process_role!
+    return if selected_role.blank?
+    add_role(selected_role)
+  end
 
   def full_name
     "#{first_name} #{last_name}"
