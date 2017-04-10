@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Adding Social Post', type: :feature do
+RSpec.describe 'Adding Social Post', type: :feature, js: true do
   let(:client)       { create :user, :with_role, user_role: :client }
   let!(:day_subject) { create :day_subject_with_image, user: client }
 
@@ -8,12 +8,13 @@ RSpec.describe 'Adding Social Post', type: :feature do
   let(:twitter_profile) { consumer.reload.social_profiles.first }
 
   let(:twitter_data) do
-    { "consumer_key"=>"somekey", "consumer_secret"=>"somesecret", "access_token"=>"sometoken", "access_token_secret"=>"somesecret" }
+    { 'consumer_key' => 'somekey', 'consumer_secret' => 'somesecret', 'access_token' => 'sometoken',
+      'access_token_secret' => 'somesecret' }
   end
 
   before { sign_in consumer }
 
-  scenario 'consumer adding social post', js: true do
+  scenario 'consumer adding social post' do
     visit root_path
 
     expect(page).to have_css('a[href="/users/auth/twitter"]')

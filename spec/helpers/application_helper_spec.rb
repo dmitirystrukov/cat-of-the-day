@@ -51,11 +51,15 @@ RSpec.describe ApplicationHelper, type: :helper do
   describe '#post_statistic_fields' do
     let(:user) { create :user }
     let(:day_subject) { create :day_subject_with_image, user: user }
-    let(:social_post) { create :social_post, user: user, day_subject: day_subject, service_name: 'FacebookPost',
-                                           day_subject_image_id: day_subject.day_subject_images.first.to_param }
+    let(:social_post) do
+      create :social_post, user: user, day_subject: day_subject, service_name: 'FacebookPost',
+                           day_subject_image_id: day_subject.day_subject_images.first.to_param
+    end
 
-    let(:result) { ["<i class=\"fa fa-heart\"><span>#{social_post.data.likes_count}</span></i>",
-                    "<i class=\"fa fa-retweet\"><span>#{social_post.data.reposts_count}</span></i>"] }
+    let(:result) do
+      ["<i class=\"fa fa-heart\"><span>#{social_post.data.likes_count}</span></i>",
+       "<i class=\"fa fa-retweet\"><span>#{social_post.data.reposts_count}</span></i>"]
+    end
 
     subject { post_statistic_fields(social_post.data) }
 

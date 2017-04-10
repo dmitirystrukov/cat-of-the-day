@@ -15,7 +15,7 @@ AllCops:
     - 'config/*'
     - 'app/controllers/users/base_controller.rb'
     - 'app/controllers/users/base_controller.rb'
-  TargetRubyVersion: 2.2
+  TargetRubyVersion: 2.3
   DisplayCopNames: true
 
 Style/Encoding:
@@ -29,6 +29,17 @@ Style/SpaceAroundEqualsInParameterDefault:
 
 Style/ParallelAssignment:
   Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/ModuleLength:
+  Exclude:
+    - "**/*_spec.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*_spec.rb"
 
 Metrics/LineLength:
   Max: 130
