@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   rolify
 
   SOCIAL_PROVIDERS = %w(facebook twitter).freeze
-  DEFAULT_ROLES = [%w(client consumer)].freeze
+  DEFAULT_ROLES = %w(client consumer).freeze
 
   SERVICE_TO_NAME = {
     'TwitterService'  => 'twitter',
