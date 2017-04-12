@@ -20,6 +20,7 @@ gem 'kaminari'
 
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog'
 gem 'sidetiq'
 gem 'sidekiq'
 
