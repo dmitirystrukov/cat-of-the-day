@@ -2721,7 +2721,7 @@
 				}
 
 				.tiles article > a.post-author {
-					margin-top: 145px;
+					margin-top: 175px;
 					height: 60px;
 					font-weight: bold;
 					font-size: 15px;
@@ -3419,6 +3419,10 @@ small {
 	color: #999;
 	font-size: 80%;
   line-height: 1.428571429;
+}
+
+ul.dropdown-menu > li > a {
+  color: #585858!important;
 }
 
 .btn-social {
