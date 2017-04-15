@@ -5,9 +5,7 @@ module Providers
     end
 
     def update_with_image(social_params)
-      media_file = image_file(social_params[:day_subject_image_id])
-
-      @client.put_picture(media_file, content_type(media_file), { message: social_params[:message] })
+      @client.put_picture(image_file(social_params[:day_subject_image_id]), message: social_params[:message])
     end
 
     def post_exists?(post_id, _options={})
