@@ -3,8 +3,8 @@ module Charts
     DATE_FORMAT = '%d/%m/%y'.freeze
 
     CHART_TYPES = {
-      facebook_chart: FacebookChart,
-      twitter_chart:  TwitterChart
+      facebook_chart: Charts::FacebookChart,
+      twitter_chart:  Charts::TwitterChart
     }.freeze
 
     attr_reader :user_id, :relation
