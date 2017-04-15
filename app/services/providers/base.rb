@@ -11,10 +11,6 @@ module Providers
       File.new open(image_full_path)
     end
 
-    def content_type(media_file)
-      MimeMagic.by_magic(media_file).type
-    end
-
     def helpers
       ActionController::Base.helpers
     end
