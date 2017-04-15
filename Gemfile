@@ -17,6 +17,7 @@ gem 'pg'
 gem 'simple_form'
 gem 'friendly_id'
 gem 'kaminari'
+gem 'mimemagic'
 
 gem 'carrierwave'
 gem 'mini_magick'
