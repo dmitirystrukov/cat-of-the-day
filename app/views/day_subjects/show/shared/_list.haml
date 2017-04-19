@@ -1,6 +1,6 @@
 %ul.tab
   - provider_names.each do |provider_name|
     %li
-      %a.tablinks{ id: provider_name, class: tab_active_class(provider_name) }
+      %a.tablinks{ id: provider_name, class: tab_active_class(provider_name, provider_names) }
         %i{class: "fa fa-#{provider_name}"}
         = provider_name.capitalize

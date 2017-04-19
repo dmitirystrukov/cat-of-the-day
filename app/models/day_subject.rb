@@ -3,7 +3,7 @@ class DaySubject < ActiveRecord::Base
 
   belongs_to :user
 
-  has_many :social_posts
+  has_many :social_posts, dependent: :destroy
   has_many :twitter_posts
   has_many :facebook_posts
 
