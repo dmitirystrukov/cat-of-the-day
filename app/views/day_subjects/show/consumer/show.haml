@@ -4,7 +4,6 @@
 %p
   = @day_subject.description
   = render 'social_publications/form', day_subject:  @day_subject
-
   - if current_user.social_posts.exists?
     %h2 My social posts
     = render 'day_subjects/show/shared/list', provider_names: current_user.day_subject_provider_names(@day_subject.to_param)
