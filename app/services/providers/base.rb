@@ -8,7 +8,11 @@ module Providers
       day_subject_image = DaySubjectImage.find(image_id)
       image_full_path = helpers.asset_url(day_subject_image.url)
 
-      File.new open(image_full_path)
+      if Rails.env.development?
+        File.new(day_subject_image.url.path)
+      else
+        File.new open(image_full_path)
+      end
     end
 
     def content_type(media_file)
