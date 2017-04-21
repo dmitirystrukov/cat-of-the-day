@@ -1,0 +1,27 @@
+%h2 Log in
+.demo-credentials
+  %p Demo credentials
+  %span consumer@example.com - password
+  %br/
+  %span client@example.com - password
+  %br/
+  .description
+    %span * As client you can create day subjects and upload images to them, track statistics for all user social posts
+    %br/
+    %span * As consumer you can connect social profiles and send social posts, track personal statistics
+= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email, autofocus: true
+  .field
+    = f.label :password
+    %br/
+    = f.password_field :password, autocomplete: "off"
+  - if devise_mapping.rememberable?
+    .field
+      = f.check_box :remember_me
+      = f.label :remember_me
+  .actions
+    = f.submit "Log in"
+= render "devise/shared/links"
