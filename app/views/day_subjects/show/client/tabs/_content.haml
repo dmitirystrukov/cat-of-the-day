@@ -1,5 +1,5 @@
 - provider_names.each do |provider_name|
-  %section.tiles.tabcontent{ id: provider_name, class: tab_active_class(provider_name) }
+  %section.tiles.tabcontent{ id: provider_name, class: tab_active_class(provider_name, provider_names) }
     - if social_posts[provider_name].present?
       - social_posts[provider_name].each do |social_post|
         = render 'day_subjects/show/shared/item', social_post: social_post

@@ -13,7 +13,7 @@ module ApplicationHelper
     current_user.social_profiles.any? { |profile| profile.service_name == provider_name }
   end
 
-  def tab_active_class(provider_name, collection=SocialProvider.providers_list)
+  def tab_active_class(provider_name, collection)
     item_first?(provider_name, collection) ? 'active' : ''
   end
 
