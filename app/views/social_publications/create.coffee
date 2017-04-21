@@ -7,13 +7,33 @@
   serviceName   = '<%= @social_post.service_name_humanized.downcase %>'
   serviceNameId = "##{serviceName}"
 
-  if !!$("a#{serviceNameId}")
-    $('ul.tab').append("<li> <a class='tablinks' id='#{serviceName}'> <i class='fa fa-#{serviceName}' /> #{serviceName} </a> </li> ")
-    $('section.tabcontent').after("<section class='tabcontent tiles' id='#{serviceName}'/>")
+  if !$("a#{serviceNameId}").length
+    tabContent = "<li> <a class='tablinks' id='#{serviceName}'> <i class='fa fa-#{serviceName}' /> #{serviceName} </a> </li>"
 
-  $("section#{serviceNameId}.tabcontent").append('<%= j render "day_subjects/show/shared/item", social_post: @social_post %>')
+    if serviceName == 'facebook'
+      $('ul.tab').prepend(tabContent)
+    else
+      $('ul.tab').append(tabContent)
+
+  if !$("section#{serviceNameId}").length
+    sectionContent = "<section class='tabcontent tiles' id='#{serviceName}'/>"
+
+    if serviceName == 'facebook'
+      $("section").before(sectionContent)
+    else
+      $("section").after(sectionContent)
+
+
+  $("section#{serviceNameId}").append('<%= j render "day_subjects/show/shared/item", social_post: @social_post %>')
+
+  $('.tablinks').removeClass('active')
+  $('.tabcontent').removeClass('active')
+  
+  $(".tablinks##{serviceName}").addClass('active')
+  $(".tabcontent##{serviceName}").addClass('active')
 
   Alert.hide()
+
 <% else %>
   errorMessages = JSON.parse('<%= raw @social_post.errors.to_hash.to_json %>')
   modelName = 'social_post'
