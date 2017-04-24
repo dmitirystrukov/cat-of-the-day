@@ -14,7 +14,7 @@ RSpec.describe 'day_subjects/show/client/show.haml', type: :view do
     assign(:social_posts, { 'twitter' => Kaminari.paginate_array([social_post]).page(1).per(1) })
   end
 
-  it 'returns twitter active tab' do
+  it 'displays twitter active tab' do
     render
     expect(rendered).to have_css('section#twitter.active')
   end
