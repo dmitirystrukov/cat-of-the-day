@@ -14,7 +14,7 @@ class SocialPublicationsController < ApplicationController
 
     if @social_post.valid?
       provider = SocialProvider.new(profile_data, social_post_params[:service_name])
-      post = provider.client.update_with_image(social_post_params)
+      post = provider.client.update_with_image(social_post_params[:message], day_subject_image)
 
       @social_post.post_id = get_post_id(post)
       @social_post.url = provider.client.url(@social_post.post_id)
@@ -26,6 +26,10 @@ class SocialPublicationsController < ApplicationController
   end
 
   private
+
+  def day_subject_image
+    @day_subject_image ||= DaySubjectImage.find(social_post_params[:day_subject_image_id])
+  end
 
   def day_subject
     @day_subject ||= DaySubject.find(social_post_params[:day_subject_id])

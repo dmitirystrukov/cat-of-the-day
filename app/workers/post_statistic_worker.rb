@@ -14,7 +14,7 @@ class PostStatisticWorker
 
     SocialPost.actively.each do |social_post|
       user_data = SocialProvider::USER_DATA_TYPES[social_post.service_name].call(social_post.user)
-      provider =  SocialProvider::PROVIDER_TYPES[social_post.service_name].new(user_data)
+      provider  = SocialProvider::PROVIDER_TYPES[social_post.service_name].new(user_data)
 
       social_post.update(data: POST_DATA[social_post.service_name].call(provider, social_post.post_id).to_json)
     end
