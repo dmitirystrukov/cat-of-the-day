@@ -4,8 +4,8 @@ module Providers
       @client ||= ::Twitter::REST::Client.new(data)
     end
 
-    def update_with_image(social_params)
-      @client.update_with_media(social_params[:message], image_file(social_params[:day_subject_image_id]))
+    def update_with_image(message, day_subject_image)
+      @client.update_with_media(message, image_file(day_subject_image))
     end
 
     def post_exists?(id, options={})

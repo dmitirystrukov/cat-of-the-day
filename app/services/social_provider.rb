@@ -19,8 +19,8 @@ class SocialProvider
   attr_reader :provider_type, :data
 
   def initialize(data, provider_type)
-    @provider_type = provider_type
     @data = data
+    @provider_type = provider_type
   end
 
   def client
