@@ -1,18 +1,15 @@
 module Charts
   class FacebookChart < Base
-    def dataset
-      ::FacebookChart.new(label: "facebook (#{relation.count})",
-                          data:  chart_data(relation, period_dates(relation))).instance_values
+    def background_color
+      'rgba(59, 89, 152, .4)'
     end
 
-    private
+    def label
+      :facebook
+    end
 
     def relation
-      if user_id.present?
-        FacebookPost.where(user_id: user_id)
-      else
-        FacebookPost
-      end
+      FacebookPost
     end
   end
 end

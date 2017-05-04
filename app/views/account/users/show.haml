@@ -3,7 +3,7 @@
     .well.well-sm
       = render 'account/users/show/profile_information', user: @user
 
-%canvas#user-profile-chart.chart{ 'data-chart' => @chart_data }
+%canvas#user-profile-chart.chart{ 'data-chart' => @charts_data }
 
 %section.tiles
   - @social_posts.each do |social_post|

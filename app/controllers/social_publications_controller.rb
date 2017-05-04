@@ -2,12 +2,13 @@ class SocialPublicationsController < ApplicationController
   authorize_resource class: false
 
   include ProviderTool
-  include ProviderValidation
 
   respond_to :js
   layout false
 
   before_action :proccess_validation!
+
+  rescue_from ProviderValidationError, with: :provider_authorize_error
 
   def create
     @social_post = current_user.public_send(provider_collection_name).new(social_post_params)
@@ -37,5 +38,27 @@ class SocialPublicationsController < ApplicationController
 
   def social_post_params
     params.require(:social_post).permit(:message, :service_name, :day_subject_id, :day_subject_image_id)
+  end
+
+  def proccess_validation!
+    validate_profile_data
+    validate_provider_type
+    validate_image_exists
+  end
+
+  def validate_profile_data
+    raise ProviderValidationError if profile_data.nil?
+  end
+
+  def validate_provider_type
+    raise ProviderValidationError if SocialProvider::PROVIDER_TYPES[provider_type].nil?
+  end
+
+  def validate_image_exists
+    raise ProviderValidationError if social_post_params[:day_subject_image_id].nil?
+  end
+
+  def provider_authorize_error
+    redirect_to day_subject_path(day_subject), flash: { error: 'Provider validation error' }
   end
 end

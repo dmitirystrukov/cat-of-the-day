@@ -9,7 +9,10 @@ module Account
       @user = User.by_slug(params[:id])
 
       @social_posts = @user.social_posts.page(params[:page]).per(PER_PAGE)
-      @chart_data   = Charts::Base.new(@user.to_param).populate([:facebook_chart, :twitter_chart])
+      @charts_data = ChartsFetcher.new([
+        Charts::FacebookChart,
+        Charts::TwitterChart
+      ], @user.to_param).collect
     end
 
     def update
