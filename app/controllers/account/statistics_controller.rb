@@ -7,7 +7,11 @@ module Account
     before_action :authenticate_user!
 
     def index
-      @chart_data   = Charts::Base.new.populate([:facebook_chart, :twitter_chart])
+      @charts_data = ChartsFetcher.new([
+        Charts::FacebookChart,
+        Charts::TwitterChart
+      ]).collect
+
       @social_posts = SocialPost.latest(SHOW_LATEST)
     end
   end

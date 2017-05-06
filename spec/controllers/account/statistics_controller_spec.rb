@@ -17,15 +17,15 @@ RSpec.describe Account::StatisticsController, type: :controller do
       let(:created_at)   { Time.new(2012, 12, 31, 12, 0, 0, '+02:00') }
       let(:user)         { create :user }
       let(:day_subject)  { create :day_subject_with_image }
-      let(:chart_data)   { JSON.parse assigns(:chart_data) }
+      let(:chart_data)   { JSON.parse assigns(:charts_data) }
 
       let(:result_data) do
         {
           'labels' => ['31/12/12'],
           'datasets' =>
              [
-               { 'label' => 'facebook (10)', 'data' => [10], 'backgroundColor' => 'rgba(59, 89, 152, .4)' },
-               { 'label' => 'twitter (5)',   'data' => [5],  'backgroundColor' => 'rgba(29, 161, 242, .4)' }
+               { 'backgroundColor' => 'rgba(59, 89, 152, .4)', 'label' => 'facebook', 'data' => [10] },
+               { 'backgroundColor' => 'rgba(29, 161, 242, .4)', 'label' => 'twitter', 'data' => [5] }
              ]
         }
       end

@@ -1,18 +1,15 @@
 module Charts
   class TwitterChart < Base
-    def dataset
-      ::TwitterChart.new(label: "twitter (#{relation.count})",
-                         data:  chart_data(relation, period_dates(relation))).instance_values
+    def background_color
+      'rgba(29, 161, 242, .4)'
     end
 
-    private
+    def label
+      :twitter
+    end
 
     def relation
-      if user_id.present?
-        TwitterPost.where(user_id: user_id)
-      else
-        TwitterPost
-      end
+      TwitterPost
     end
   end
 end
